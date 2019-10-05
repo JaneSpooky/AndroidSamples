@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">AndroidSamples</string>
+    <!-- RecyclerView -->
+    <string name="title_recycler_view">RecyclerView</string>
+    <!-- ViewPager -->
+    <string name="title_view_pager">ViewPager</string>
+</resources>
