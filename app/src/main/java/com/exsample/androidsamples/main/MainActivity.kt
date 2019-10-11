@@ -1,5 +1,6 @@
 package com.exsample.androidsamples.main
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
@@ -54,8 +55,9 @@ class MainActivity: BaseActivity() {
 
     private fun startActivity(activitySimpleName: String) {
         when(activitySimpleName) {
-            RecyclerViewActivity::class.java.simpleName -> RecyclerViewActivity.start(this)
+            RecyclerViewActivity::class.java.simpleName -> RecyclerViewActivity.start(this, 1, 2)
             ViewPagerActivity::class.java.simpleName -> ViewPagerActivity.start(this)
+
         }
     }
 

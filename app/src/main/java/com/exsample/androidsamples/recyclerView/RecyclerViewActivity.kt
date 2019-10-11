@@ -3,6 +3,8 @@ package com.exsample.androidsamples.recyclerView
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.widget.ImageView
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.exsample.androidsamples.R
 import com.exsample.androidsamples.base.BaseActivity
@@ -16,6 +18,7 @@ class RecyclerViewActivity: BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.recycler_view_activity)
         initialize()
+        intent.getIntExtra("key_index1", 0)
     }
 
     private fun initialize() {
@@ -64,6 +67,15 @@ class RecyclerViewActivity: BaseActivity() {
     }
 
     companion object {
-        fun start(activity: Activity) = activity.startActivity(Intent(activity, RecyclerViewActivity::class.java))
+        fun start(activity: Activity, index1: Int, index2: Int) {
+//            activity.startActivity(
+//                Intent(activity, RecyclerViewActivity::class.java)
+//            )
+            var string = "string"
+            val intent = Intent(activity,  RecyclerViewActivity::class.java)
+            intent.putExtra("key_index1", index1)
+            intent.putExtra("key_string", string)
+            activity.startActivity(intent)
+        }
     }
 }

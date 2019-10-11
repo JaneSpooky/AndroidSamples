@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import com.exsample.androidsamples.R
+import com.exsample.androidsamples.recyclerView.RecyclerViewActivity
 import kotlinx.android.synthetic.main.view_pager_activity.*
 
 class ViewPagerActivity : AppCompatActivity() {
@@ -51,19 +52,23 @@ class ViewPagerActivity : AppCompatActivity() {
     class CustomAdapter(fragmentManager: FragmentManager) :
         FragmentPagerAdapter(fragmentManager, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
         private val items: List<Item> = listOf(
-            Pair(0, R.color.light_blue),
-            Pair(1, R.color.light_yellow),
-            Pair(2, R.color.light_blue)
+            Pair(false, R.color.light_blue),
+            Pair(false, R.color.light_yellow),
+            Pair(false, R.color.light_blue),
+            Pair(true, R.color.light_blue)
         )
             .map {
-                Item(
+                val fragment =
+                    if (!it.first)
                     ChildFragment().apply {
                         arguments = Bundle().apply {
-                            putInt(ChildFragment.KEY_INDEX, it.first)
+                            putInt(ChildFragment.KEY_INDEX, (Math.random() * 100).toInt())
                             putInt(ChildFragment.KEY_COLOR, it.second)
                         }
                     }
-                )
+                else
+                    BlankFragment()
+                Item(fragment)
             }
 
         override fun getCount(): Int = items.size

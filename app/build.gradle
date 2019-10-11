@@ -44,6 +44,8 @@ dependencies {
     // ViewModel
     implementation "androidx.lifecycle:lifecycle-extensions:$lifecycler_version"
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycler_version"
+
+
     // ConstraintLayout
     implementation "androidx.constraintlayout:constraintlayout:$constranit_layout_version"
     // RecyclerView
