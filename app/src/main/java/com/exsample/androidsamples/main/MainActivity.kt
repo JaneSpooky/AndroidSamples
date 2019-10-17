@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModelProviders
 import com.exsample.androidsamples.R
 import com.exsample.androidsamples.base.BaseActivity
 import com.exsample.androidsamples.databinding.MainActivityBinding
+import com.exsample.androidsamples.firestore.FirestoreActivity
 import com.exsample.androidsamples.recyclerView.RecyclerViewActivity
 import com.exsample.androidsamples.viewPager.ViewPagerActivity
 
@@ -56,6 +57,7 @@ class MainActivity: BaseActivity() {
         when(activitySimpleName) {
             RecyclerViewActivity::class.java.simpleName -> RecyclerViewActivity.start(this)
             ViewPagerActivity::class.java.simpleName -> ViewPagerActivity.start(this)
+            FirestoreActivity::class.java.simpleName -> FirestoreActivity.start(this)
         }
     }
 

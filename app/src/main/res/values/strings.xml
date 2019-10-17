@@ -1,7 +1,15 @@
 <resources>
     <string name="app_name">AndroidSamples</string>
+    <!-- Common -->
+    <string name="ok">OK</string>
+    <string name="cancel">キャンセル</string>
     <!-- RecyclerView -->
     <string name="title_recycler_view">RecyclerView</string>
     <!-- ViewPager -->
     <string name="title_view_pager">ViewPager</string>
+    <!-- Firestore -->
+    <string name="title_chat_rooms">ChatRooms</string>
+    <string name="make_chat_room">チャットルーム作成</string>
+    <string name="enter_chat_room_name">ルーム名を入れてください</string>
+    <string name="enter_chat_message">メッセージを入力しよう</string>
 </resources>

@@ -41,6 +41,7 @@ dependencies {
     implementation "com.squareup.picasso:picasso:$picasso_version"
     // MaterialDialog
     implementation "com.afollestad.material-dialogs:core:$material_dialog_version"
+    implementation "com.afollestad.material-dialogs:input:$material_dialog_version"
     // ViewModel
     implementation "androidx.lifecycle:lifecycle-extensions:$lifecycler_version"
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycler_version"
@@ -50,5 +51,10 @@ dependencies {
     implementation "androidx.recyclerview:recyclerview:$recycler_view_version"
     // TabLayout等
     implementation "com.google.android.material:material:$material_version"
-
+    // Firestore
+    implementation "com.google.firebase:firebase-firestore:$firebase_firestore_version"
+    // EventBus
+    implementation "org.greenrobot:eventbus:$eventbus_version"
 }
+
+apply plugin: 'com.google.gms.google-services'

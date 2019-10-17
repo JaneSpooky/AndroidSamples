@@ -7,9 +7,10 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.exsample.androidsamples.R
+import com.exsample.androidsamples.base.BaseFragment
 import kotlinx.android.synthetic.main.child_fragment.*
 
-class ChildFragment: Fragment() {
+class ChildFragment: BaseFragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return layoutInflater.inflate(R.layout.child_fragment, container, false)
