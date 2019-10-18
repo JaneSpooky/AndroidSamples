@@ -14,6 +14,8 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ListenerRegistration
 import com.google.firebase.firestore.Query
 import kotlinx.android.synthetic.main.chat_room_fragment.*
+import timber.log.Timber
+import java.util.*
 
 class ChatRoomFragment: BaseFragment() {
 
@@ -29,6 +31,11 @@ class ChatRoomFragment: BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initialize()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        messageListener?.remove()
     }
 
     private fun initialize() {
@@ -97,25 +104,31 @@ class ChatRoomFragment: BaseFragment() {
         FirebaseFirestore.getInstance()
             .collection("messages")
             .whereEqualTo(ChatMessage::roomId.name, roomId)
+            .orderBy(ChatMessage::createdAt.name)
             .get()
             .addOnCompleteListener {
                 swipeRefreshLayout.isRefreshing = false
                 if (!it.isSuccessful)
                     return@addOnCompleteListener
+                var date = Date()
                 it.result?.toObjects(ChatMessage::class.java)?.also { messages ->
                     customAdapter.refresh(messages)
+                    date = messages.lastOrNull()?.createdAt ?: Date()
                 }
-                initSubscribe()
+                initSubscribe(date)
             }
     }
 
-    private fun initSubscribe() {
-        messageListener = FirebaseFirestore.getInstance()
+    private fun initSubscribe(lastCreatedAt: Date) {
+        messageListener = FirebaseFirestore
+            .getInstance()
             .collection("messages")
             .whereEqualTo(ChatMessage::roomId.name, roomId)
             .orderBy(ChatMessage::createdAt.name, Query.Direction.DESCENDING)
+            .whereGreaterThan(ChatMessage::createdAt.name, lastCreatedAt)
             .limit(1L)
             .addSnapshotListener { snapshot, firebaseFirestoreException ->
+                Timber.d("initSubscribe snapshot:$snapshot firebaseFirestoreException:$firebaseFirestoreException")
                 if (firebaseFirestoreException != null) {
                     firebaseFirestoreException.printStackTrace()
                     return@addSnapshotListener

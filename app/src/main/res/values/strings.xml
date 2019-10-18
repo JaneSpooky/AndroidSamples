@@ -11,5 +11,6 @@
     <string name="title_chat_rooms">ChatRooms</string>
     <string name="make_chat_room">チャットルーム作成</string>
     <string name="enter_chat_room_name">ルーム名を入れてください</string>
+    <string name="make_message">メッセージ作成</string>
     <string name="enter_chat_message">メッセージを入力しよう</string>
 </resources>
