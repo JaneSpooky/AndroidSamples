@@ -1,5 +1,6 @@
-import com.google.gson.annotations.SerializedName
+package com.exsample.androidsamples.okhttp3
 
+import com.google.gson.annotations.SerializedName
 /*
 Copyright (c) 2019 Kotlin Data Classes Generated from JSON powered by http://www.json2kotlin.com
 
@@ -11,6 +12,9 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 For support, please feel free to contact me at https://www.linkedin.com/in/syedabsar */
 
+class Qiita {
+	var items: List<QiitaResponse> = listOf()
+}
 
 data class QiitaResponse (
 

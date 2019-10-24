@@ -12,6 +12,7 @@ import com.exsample.androidsamples.R
 import com.exsample.androidsamples.base.BaseFragment
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.chat_rooms_fragment.*
+import timber.log.Timber
 
 class ChatRoomsFragment: BaseFragment() {
 
@@ -95,6 +96,9 @@ class ChatRoomsFragment: BaseFragment() {
                 it.result?.toObjects(ChatRoom::class.java)?.also { chatRooms ->
                     customAdapter.refresh(chatRooms)
                 }
+            }.addOnFailureListener {
+                it.printStackTrace()
+                Timber.e("${it.message}")
             }
     }
 }
