@@ -55,6 +55,8 @@ dependencies {
     implementation "com.google.firebase:firebase-firestore:$firebase_firestore_version"
     // EventBus
     implementation "org.greenrobot:eventbus:$eventbus_version"
+    // OkHttp3
+    implementation("com.squareup.okhttp3:okhttp:$okhttp_version")
 }
 
 apply plugin: 'com.google.gms.google-services'

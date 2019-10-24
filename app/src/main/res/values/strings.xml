@@ -13,4 +13,8 @@
     <string name="enter_chat_room_name">ルーム名を入れてください</string>
     <string name="make_message">メッセージ作成</string>
     <string name="enter_chat_message">メッセージを入力しよう</string>
+    <!-- OkHttp3 -->
+    <string name="title_ok_http">OkHttp</string>
+    <string name="network_error_dialog_title">通信エラーです</string>
+    <string name="network_error_dialog_message">通信状況が良い場所でもう一度お試しください。</string>
 </resources>

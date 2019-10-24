@@ -8,6 +8,7 @@ import com.exsample.androidsamples.R
 import com.exsample.androidsamples.base.BaseActivity
 import com.exsample.androidsamples.databinding.MainActivityBinding
 import com.exsample.androidsamples.firestore.FirestoreActivity
+import com.exsample.androidsamples.okhttp3.OkHttp3Activity
 import com.exsample.androidsamples.recyclerView.RecyclerViewActivity
 import com.exsample.androidsamples.viewPager.ViewPagerActivity
 
@@ -58,6 +59,7 @@ class MainActivity: BaseActivity() {
             RecyclerViewActivity::class.java.simpleName -> RecyclerViewActivity.start(this)
             ViewPagerActivity::class.java.simpleName -> ViewPagerActivity.start(this)
             FirestoreActivity::class.java.simpleName -> FirestoreActivity.start(this)
+            OkHttp3Activity::class.java.simpleName -> OkHttp3Activity.start(this)
         }
     }
 
