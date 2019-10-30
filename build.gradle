@@ -13,6 +13,7 @@ buildscript {
         firebase_firestore_version = '20.2.0'
         eventbus_version = '3.1.1'
         okhttp_version = '4.2.1'
+        play_service_map_version = '17.0.0'
     }
     repositories {
         google()

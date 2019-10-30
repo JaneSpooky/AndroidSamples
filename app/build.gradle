@@ -57,6 +57,8 @@ dependencies {
     implementation "org.greenrobot:eventbus:$eventbus_version"
     // OkHttp3
     implementation("com.squareup.okhttp3:okhttp:$okhttp_version")
+    // Map
+    implementation "com.google.android.gms:play-services-maps:$play_service_map_version"
 }
 
 apply plugin: 'com.google.gms.google-services'
