@@ -10,7 +10,9 @@ import com.exsample.androidsamples.databinding.MainActivityBinding
 import com.exsample.androidsamples.firestore.FirestoreActivity
 import com.exsample.androidsamples.location.LocationActivity
 import com.exsample.androidsamples.okhttp3.OkHttp3Activity
+import com.exsample.androidsamples.realm.RealmActivity
 import com.exsample.androidsamples.recyclerView.RecyclerViewActivity
+import com.exsample.androidsamples.service.ServiceActivity
 import com.exsample.androidsamples.viewPager.ViewPagerActivity
 
 class MainActivity: BaseActivity() {
@@ -62,6 +64,7 @@ class MainActivity: BaseActivity() {
             FirestoreActivity::class.java.simpleName -> FirestoreActivity.start(this)
             OkHttp3Activity::class.java.simpleName -> OkHttp3Activity.start(this)
             LocationActivity::class.java.simpleName -> LocationActivity.start(this)
+            ServiceActivity::class.java.simpleName -> ServiceActivity.start(this)
         }
     }
 

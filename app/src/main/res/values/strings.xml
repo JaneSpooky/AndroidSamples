@@ -25,4 +25,9 @@
     <string name="move_google_setting_dialog_message">「OK」を押して位置情報をオンにしてください。</string>
     <string name="location_permission_denied_dialog_title">位置情報</string>
     <string name="location_permission_denied_dialog_message">位置情報の使用権限を拒否されました。\nあとから設定する場合、設定アプリから権限を設定し直してください。</string>
+    <!-- Service -->
+    <string name="service_title">Service</string>
+    <string name="start_service">サービスの開始</string>
+    <string name="stop_service">サービスの停止</string>
+    <string name="show_notification">通知の表示</string>
 </resources>
