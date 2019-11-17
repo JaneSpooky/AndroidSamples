@@ -139,6 +139,18 @@ class ChatRoomFragment: BaseFragment() {
             }
     }
 
+    private fun test() {
+        FirebaseFirestore
+            .getInstance()
+            .collection("operations")
+            .orderBy("expiredAt", Query.Direction.DESCENDING) // 賞味期限が新しい順
+            .whereEqualTo("postion1", "MY_DRIVER_ID") // position1　が自分のDriverId
+            .whereEqualTo("isFinish", false) // まだ終わってないもの
+            .whereGreaterThan("expiredAt", Date()) // 賞味期限が現在時刻よりも後
+            .limit(50L)
+
+    }
+
     companion object {
         const val KEY_ROOM_ID = "key_room_id"
         const val KEY_ROOM_NAME = "key_room_name"

@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.exsample.androidsamples.databinding.SampleCellBinding
+import java.util.*
 
 class SamplesView: RecyclerView {
 
@@ -45,6 +46,7 @@ class SamplesView: RecyclerView {
         override fun onBindViewHolder(holder: ViewHolder, position: Int) {
             if (holder is SampleViewModel)
                 onBindViewHolder(holder, position)
+
         }
 
         private fun onBindViewHolder(holder: SampleViewModel, position: Int) {
