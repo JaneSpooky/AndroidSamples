@@ -59,6 +59,10 @@ class FirebaseAuthActivity: BaseActivity() {
             }
     }
 
+    private fun login() {
+        FirebaseAuth.getInstance().signInWithEmailAndPassword("めーる", "パスワード")
+    }
+
     private fun logout() {
         FirebaseAuth.getInstance().signOut()
         updateView()

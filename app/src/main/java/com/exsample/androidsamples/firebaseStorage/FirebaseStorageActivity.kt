@@ -6,7 +6,12 @@ import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
 import android.net.Uri
 import android.os.Bundle
+import android.os.Handler
+import android.view.LayoutInflater
+import android.view.View
+import android.widget.ImageView
 import android.widget.Toast
+import com.afollestad.materialdialogs.MaterialDialog
 import com.exsample.androidsamples.R
 import com.exsample.androidsamples.base.BaseActivity
 import com.google.firebase.auth.FirebaseAuth
@@ -29,6 +34,15 @@ class FirebaseStorageActivity: BaseActivity() {
             return
         data.data?.also {
             Picasso.get().load(it).into(imageView)
+            Picasso.get().load(it).into(modalImageVIew)
+            frameView.visibility = View.VISIBLE
+
+//            MaterialDialog(this).apply {
+//                cancelable(true)
+//                val dialogView = LayoutInflater.from(this@FirebaseStorageActivity).inflate(R.layout.image_dialog, null, false)
+//                Picasso.get().load(it).into(dialogView.findViewById<ImageView>(R.id.imageView))
+//                setContentView(dialogView)
+//            }.show()
         }
     }
 
@@ -49,6 +63,9 @@ class FirebaseStorageActivity: BaseActivity() {
         }
         uploadButton.setOnClickListener {
             upload()
+        }
+        frameView.setOnClickListener {
+            frameView.visibility = View.INVISIBLE
         }
     }
 
@@ -74,7 +91,7 @@ class FirebaseStorageActivity: BaseActivity() {
                 Toast.makeText(this, "Upload失敗", Toast.LENGTH_SHORT).show()
                 bitmap.recycle()
             }
-            .addOnCompleteListener {
+            .addOnSuccessListener {
                 Toast.makeText(this, "Upload成功", Toast.LENGTH_SHORT).show()
                 bitmap.recycle()
             }
