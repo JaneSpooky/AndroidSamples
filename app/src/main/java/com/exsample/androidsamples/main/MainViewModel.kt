@@ -2,10 +2,11 @@ package com.exsample.androidsamples.main
 
 import androidx.lifecycle.MutableLiveData
 import com.exsample.androidsamples.base.BaseViewModel
+import com.exsample.androidsamples.firebaseAuth.FirebaseAuthActivity
+import com.exsample.androidsamples.firebaseStorage.FirebaseStorageActivity
 import com.exsample.androidsamples.firestore.FirestoreActivity
 import com.exsample.androidsamples.location.LocationActivity
 import com.exsample.androidsamples.okhttp3.OkHttp3Activity
-import com.exsample.androidsamples.realm.RealmActivity
 import com.exsample.androidsamples.recyclerView.RecyclerViewActivity
 import com.exsample.androidsamples.service.ServiceActivity
 import com.exsample.androidsamples.viewPager.ViewPagerActivity
@@ -22,7 +23,9 @@ class MainViewModel: BaseViewModel() {
                 Pair("Firestore", FirestoreActivity::class.java.simpleName),
                 Pair("OkHttp3", OkHttp3Activity::class.java.simpleName),
                 Pair("Location", LocationActivity::class.java.simpleName),
-                Pair("Service", ServiceActivity::class.java.simpleName)
+                Pair("Service", ServiceActivity::class.java.simpleName),
+                Pair("FirebaseAuth", FirebaseAuthActivity::class.java.simpleName),
+                Pair("FirebaseStorage", FirebaseStorageActivity::class.java.simpleName)
                 )
         )
     }

@@ -15,6 +15,8 @@ buildscript {
         okhttp_version = '4.2.1'
         play_service_map_version = '17.0.0'
         firebase_messageing_version = '20.0.0'
+        firebase_auth_version = '19.1.0'
+        firebase_storage_version = '19.1.0'
     }
     repositories {
         google()

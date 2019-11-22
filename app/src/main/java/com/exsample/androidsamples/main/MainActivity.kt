@@ -7,6 +7,8 @@ import androidx.lifecycle.ViewModelProviders
 import com.exsample.androidsamples.R
 import com.exsample.androidsamples.base.BaseActivity
 import com.exsample.androidsamples.databinding.MainActivityBinding
+import com.exsample.androidsamples.firebaseAuth.FirebaseAuthActivity
+import com.exsample.androidsamples.firebaseStorage.FirebaseStorageActivity
 import com.exsample.androidsamples.firestore.FirestoreActivity
 import com.exsample.androidsamples.location.LocationActivity
 import com.exsample.androidsamples.okhttp3.OkHttp3Activity
@@ -65,6 +67,8 @@ class MainActivity: BaseActivity() {
             OkHttp3Activity::class.java.simpleName -> OkHttp3Activity.start(this)
             LocationActivity::class.java.simpleName -> LocationActivity.start(this)
             ServiceActivity::class.java.simpleName -> ServiceActivity.start(this)
+            FirebaseAuthActivity::class.java.simpleName -> FirebaseAuthActivity.start(this)
+            FirebaseStorageActivity::class.java.simpleName -> FirebaseStorageActivity.start(this)
         }
     }
 

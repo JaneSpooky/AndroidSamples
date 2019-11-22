@@ -61,6 +61,10 @@ dependencies {
     implementation "com.google.android.gms:play-services-maps:$play_service_map_version"
     // FCM
     implementation "com.google.firebase:firebase-messaging:$firebase_messageing_version"
+    // FirebaseAuth
+    implementation "com.google.firebase:firebase-auth:$firebase_auth_version"
+    // FirebaseStrage
+    implementation "com.google.firebase:firebase-storage:$firebase_storage_version"
 }
 
 apply plugin: 'com.google.gms.google-services'

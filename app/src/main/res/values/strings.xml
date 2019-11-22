@@ -30,4 +30,12 @@
     <string name="start_service">サービスの開始</string>
     <string name="stop_service">サービスの停止</string>
     <string name="show_notification">通知の表示</string>
+    <!-- FirebaseAuth -->
+    <string name="firebase_auth_title">FirebaseAuth</string>
+    <string name="firebase_auth_register">登録</string>
+    <string name="firebase_suth_logout">ログアウト</string>
+    <!-- FirebaseStorage -->
+    <string name="firebase_storage_title">FirebaseStorage</string>
+    <string name="firebase_storage_select_image">画像を選ぶ</string>
+    <string name="firebase_storage_upload">画像をアップロード</string>
 </resources>

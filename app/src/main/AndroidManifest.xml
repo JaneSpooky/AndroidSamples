@@ -45,6 +45,12 @@
         <activity
             android:name=".realm.RealmActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".firebaseAuth.FirebaseAuthActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".firebaseStorage.FirebaseStorageActivity"
+            android:screenOrientation="portrait" />
         
         <service android:name=".service.MyService" />
 
