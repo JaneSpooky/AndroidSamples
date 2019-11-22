@@ -70,12 +70,24 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:text="@string/firebase_storage_select_image"
-            app:layout_constraintBottom_toTopOf="@id/uploadButton"
+            app:layout_constraintBottom_toTopOf="@id/cameraButton"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_chainStyle="spread"
             app:layout_constraintHorizontal_weight="1"
             app:layout_constraintStart_toEndOf="@id/imageView"
             app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="spread"
+            app:layout_constraintVertical_weight="1" />
+
+        <Button
+            android:id="@+id/cameraButton"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:text="@string/firebase_storage_camera"
+            app:layout_constraintBottom_toTopOf="@id/uploadButton"
+            app:layout_constraintEnd_toEndOf="@id/selectImageButton"
+            app:layout_constraintStart_toStartOf="@id/selectImageButton"
+            app:layout_constraintTop_toBottomOf="@id/selectImageButton"
             app:layout_constraintVertical_chainStyle="spread"
             app:layout_constraintVertical_weight="1" />
 
@@ -87,7 +99,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@id/selectImageButton"
             app:layout_constraintStart_toStartOf="@id/selectImageButton"
-            app:layout_constraintTop_toBottomOf="@id/selectImageButton"
+            app:layout_constraintTop_toBottomOf="@id/cameraButton"
             app:layout_constraintVertical_chainStyle="spread"
             app:layout_constraintVertical_weight="1" />
 

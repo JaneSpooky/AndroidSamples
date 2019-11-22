@@ -38,4 +38,5 @@
     <string name="firebase_storage_title">FirebaseStorage</string>
     <string name="firebase_storage_select_image">画像を選ぶ</string>
     <string name="firebase_storage_upload">画像をアップロード</string>
+    <string name="firebase_storage_camera">カメラ起動</string>
 </resources>

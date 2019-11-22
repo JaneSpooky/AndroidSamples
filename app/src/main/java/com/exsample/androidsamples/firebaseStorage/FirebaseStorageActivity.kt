@@ -19,6 +19,13 @@ import com.google.firebase.storage.FirebaseStorage
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.firebase_storage_activity.*
 import java.io.ByteArrayOutputStream
+import androidx.core.app.ActivityCompat.startActivityForResult
+import android.provider.MediaStore
+import androidx.core.app.ComponentActivity.ExtraData
+import androidx.core.content.ContextCompat.getSystemService
+import android.icu.lang.UCharacter.GraphemeClusterBreak.T
+
+
 
 class FirebaseStorageActivity: BaseActivity() {
 
@@ -30,20 +37,20 @@ class FirebaseStorageActivity: BaseActivity() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode != REQUEST_CODE_CHOOSE_IMAGE || resultCode != Activity.RESULT_OK || data == null)
+        if (resultCode != Activity.RESULT_OK || data == null)
             return
+        if (requestCode == REQUEST_CODE_CHOOSE_IMAGE)
         data.data?.also {
             Picasso.get().load(it).into(imageView)
             Picasso.get().load(it).into(modalImageVIew)
             frameView.visibility = View.VISIBLE
-
-//            MaterialDialog(this).apply {
-//                cancelable(true)
-//                val dialogView = LayoutInflater.from(this@FirebaseStorageActivity).inflate(R.layout.image_dialog, null, false)
-//                Picasso.get().load(it).into(dialogView.findViewById<ImageView>(R.id.imageView))
-//                setContentView(dialogView)
-//            }.show()
         }
+        else if (requestCode == REQUEST_CODE_START_CAMERA)
+            (data.extras?.get("data") as? Bitmap)?.also {
+                imageView.setImageBitmap(it)
+                modalImageVIew.setImageBitmap(it)
+                frameView.visibility = View.VISIBLE
+            }
     }
 
     private fun initialize() {
@@ -61,12 +68,16 @@ class FirebaseStorageActivity: BaseActivity() {
         selectImageButton.setOnClickListener {
             selectImage()
         }
+        cameraButton.setOnClickListener {
+            startCamera()
+        }
         uploadButton.setOnClickListener {
             upload()
         }
         frameView.setOnClickListener {
             frameView.visibility = View.INVISIBLE
         }
+
     }
 
     private fun selectImage() {
@@ -78,6 +89,14 @@ class FirebaseStorageActivity: BaseActivity() {
             .addCategory(Intent.CATEGORY_OPENABLE)
             .setType("image/jpeg")
         startActivityForResult(intent, REQUEST_CODE_CHOOSE_IMAGE)
+    }
+
+    private fun startCamera() {
+        if (FirebaseAuth.getInstance().currentUser == null) {
+            Toast.makeText(this, "ログインしてから来てください", Toast.LENGTH_SHORT).show()
+            return
+        }
+        startActivityForResult(Intent(MediaStore.ACTION_IMAGE_CAPTURE), REQUEST_CODE_START_CAMERA)
     }
 
     private fun upload() {
@@ -99,6 +118,7 @@ class FirebaseStorageActivity: BaseActivity() {
 
     companion object {
         private const val REQUEST_CODE_CHOOSE_IMAGE = 1000
+        private const val REQUEST_CODE_START_CAMERA = 1001
         fun start(activity: Activity) = activity.startActivity(Intent(activity, FirebaseStorageActivity::class.java))
     }
 }
