@@ -9,6 +9,7 @@ import com.exsample.androidsamples.location.LocationActivity
 import com.exsample.androidsamples.okhttp3.OkHttp3Activity
 import com.exsample.androidsamples.recyclerView.RecyclerViewActivity
 import com.exsample.androidsamples.service.ServiceActivity
+import com.exsample.androidsamples.tagView.TagViewActivity
 import com.exsample.androidsamples.viewPager.ViewPagerActivity
 
 class MainViewModel: BaseViewModel() {
@@ -25,7 +26,8 @@ class MainViewModel: BaseViewModel() {
                 Pair("Location", LocationActivity::class.java.simpleName),
                 Pair("Service", ServiceActivity::class.java.simpleName),
                 Pair("FirebaseAuth", FirebaseAuthActivity::class.java.simpleName),
-                Pair("FirebaseStorage", FirebaseStorageActivity::class.java.simpleName)
+                Pair("FirebaseStorage", FirebaseStorageActivity::class.java.simpleName),
+                Pair("TagView", TagViewActivity::class.java.simpleName)
                 )
         )
     }

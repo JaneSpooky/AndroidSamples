@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="TagView">
+        <attr name="textSize" format="dimension"/>
+        <attr name="textColor" format="color" />
+        <attr name="backgroundColor" format="integer" />
+        <attr name="backgroundDrawable" format="integer" />
+        <attr name="tagMargin" format="dimension" />
+        <attr name="tagPadding" format="dimension" />
+    </declare-styleable>
+    <declare-styleable name="Themes">
+        <attr name="tagViewStyle" format="reference" />
+    </declare-styleable>
+</resources>

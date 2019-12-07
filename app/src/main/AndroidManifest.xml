@@ -51,7 +51,9 @@
         <activity
             android:name=".firebaseStorage.FirebaseStorageActivity"
             android:screenOrientation="portrait" />
-        
+        <activity
+            android:name=".tagView.TagViewActivity"
+            android:screenOrientation="portrait" />
         <service android:name=".service.MyService" />
 
         <service
