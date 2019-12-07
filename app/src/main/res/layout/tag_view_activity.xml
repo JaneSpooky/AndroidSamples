@@ -21,14 +21,14 @@
                 android:id="@+id/tagView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                app:textSize="15dp"
-                app:tagPadding="2dp"
-                app:tagMargin="2dp"
                 app:backgroundColor="@android:color/black"
-                app:textColor="@android:color/white"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:tagMargin="2dp"
+                app:tagPadding="2dp"
+                app:textColor="@android:color/white"
+                app:textSize="15dp" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 

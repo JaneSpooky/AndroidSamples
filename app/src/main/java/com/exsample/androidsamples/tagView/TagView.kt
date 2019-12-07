@@ -13,6 +13,7 @@ import androidx.core.view.children
 import androidx.core.view.setPadding
 import androidx.core.view.size
 import com.exsample.androidsamples.R
+import com.exsample.androidsamples.SampleApplication.Companion.density
 import timber.log.Timber
 
 class TagView: LinearLayout {
@@ -84,7 +85,7 @@ class TagView: LinearLayout {
             return
         if (hasToAddHorizontalLinearLayout(tag))
             addHorizontalLinearLayout()
-        val textWidth = paint.measureText(tag) + tagPadding * 2
+        val textWidth = getTextWidth(tag) + tagPadding * 2
         val textView = makeTextView(tag, currentSize)
         horizontalLinearLayouts.last().addView(textView, LayoutParams(if (textWidth < width) LayoutParams.WRAP_CONTENT else LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT).apply {
             setMargins(0, 0, tagMargin, 0)
@@ -100,10 +101,13 @@ class TagView: LinearLayout {
         if (horizontalLinearLayouts.last().childCount == 0)
             return false
         val remainingWidth = width - horizontalLinearLayouts.last().children.map { it.width }.sum() - horizontalLinearLayouts.last().size * tagMargin
-        val textWidth = paint.measureText(tag) + tagMargin + tagPadding * 2
+        val textWidth = getTextWidth(tag) + tagMargin + tagPadding * 2
         Timber.d("width:$width remainingWidth:$remainingWidth textWidth:$textWidth")
         return textWidth > remainingWidth
     }
+
+    private fun getTextWidth(text: String) : Int =
+        (paint.measureText(text) * density).toInt()
 
     private fun addHorizontalLinearLayout() {
         val linearLayout = LinearLayout(context).apply {
