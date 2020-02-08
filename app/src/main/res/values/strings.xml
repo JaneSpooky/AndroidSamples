@@ -33,13 +33,27 @@
     <!-- FirebaseAuth -->
     <string name="firebase_auth_title">FirebaseAuth</string>
     <string name="firebase_auth_register">登録</string>
-    <string name="firebase_suth_logout">ログアウト</string>
+    <string name="firebase_auth_login">ログイン</string>
+    <string name="firebase_auth_forget_password">パスワード再設定</string>
+    <string name="firebase_auth_logout">ログアウト</string>
+    <string name="firebase_auth_mail">メールアドレス</string>
+    <string name="firebase_auth_hint_mail">メールアドレスを入力してください</string>
+    <string name="firebase_auth_password">パスワード</string>
+    <string name="firebase_auth_hint_password">8文字以上16文字以内</string>
+    <string name="firebase_auth_execute">実行</string>
+    <string name="firebase_auth_change_password">パスワード変更</string>
+    <string name="firebase_auth_success">成功</string>
+    <string name="firebase_auth_error">失敗</string>
+    <string name="firebase_auth_warn_mail">メールアドレスを正しく入力してください</string>
+    <string name="firebase_auth_warn_password">パスワードを正しく入力してください</string>
+    <string name="firebase_auth_warn_login">ログインしてください</string>
+    <string name="firebase_auth_input_new_password">8文字以上16文字以上で新しいパスワードを入力してください</string>
     <!-- FirebaseStorage -->
     <string name="firebase_storage_title">FirebaseStorage</string>
     <string name="firebase_storage_select_image">画像を選ぶ</string>
     <string name="firebase_storage_upload">画像をアップロード</string>
     <string name="firebase_storage_camera">カメラ起動</string>
-<!-- TagView -->
+    <!-- TagView -->
     <string name="add_short_ag">短い</string>
     <string name="add_long_ag">長い</string>
     <string name="add_super_long_ag">すごく長い</string>
