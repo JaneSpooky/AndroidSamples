@@ -58,4 +58,6 @@
     <string name="add_long_ag">長い</string>
     <string name="add_super_long_ag">すごく長い</string>
     <string name="clear_tag">リセット</string>
+    <!-- RecyclerViewSample -->
+    <string name="title_recycler_view_sample">RecyclerViewSample</string>
 </resources>

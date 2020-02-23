@@ -14,6 +14,7 @@ import com.exsample.androidsamples.location.LocationActivity
 import com.exsample.androidsamples.okhttp3.OkHttp3Activity
 import com.exsample.androidsamples.realm.RealmActivity
 import com.exsample.androidsamples.recyclerView.RecyclerViewActivity
+import com.exsample.androidsamples.recyclerViewSample.RecyclerViewSampleActivity
 import com.exsample.androidsamples.service.ServiceActivity
 import com.exsample.androidsamples.tagView.TagViewActivity
 import com.exsample.androidsamples.viewPager.ViewPagerActivity
@@ -63,6 +64,7 @@ class MainActivity: BaseActivity() {
     private fun startActivity(activitySimpleName: String) {
         when(activitySimpleName) {
             RecyclerViewActivity::class.java.simpleName -> RecyclerViewActivity.start(this)
+            RecyclerViewSampleActivity::class.java.simpleName -> RecyclerViewSampleActivity.start(this)
             ViewPagerActivity::class.java.simpleName -> ViewPagerActivity.start(this)
             FirestoreActivity::class.java.simpleName -> FirestoreActivity.start(this)
             OkHttp3Activity::class.java.simpleName -> OkHttp3Activity.start(this)

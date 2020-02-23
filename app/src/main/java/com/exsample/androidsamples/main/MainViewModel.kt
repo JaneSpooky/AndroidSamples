@@ -8,6 +8,7 @@ import com.exsample.androidsamples.firestore.FirestoreActivity
 import com.exsample.androidsamples.location.LocationActivity
 import com.exsample.androidsamples.okhttp3.OkHttp3Activity
 import com.exsample.androidsamples.recyclerView.RecyclerViewActivity
+import com.exsample.androidsamples.recyclerViewSample.RecyclerViewSampleActivity
 import com.exsample.androidsamples.service.ServiceActivity
 import com.exsample.androidsamples.tagView.TagViewActivity
 import com.exsample.androidsamples.viewPager.ViewPagerActivity
@@ -20,6 +21,7 @@ class MainViewModel: BaseViewModel() {
         activityPairs.postValue(
             listOf(
                 Pair("RecyclerView", RecyclerViewActivity::class.java.simpleName),
+                Pair("RecyclerViewSample", RecyclerViewSampleActivity::class.java.simpleName),
                 Pair("ViewPager", ViewPagerActivity::class.java.simpleName),
                 Pair("Firestore", FirestoreActivity::class.java.simpleName),
                 Pair("OkHttp3", OkHttp3Activity::class.java.simpleName),

@@ -28,6 +28,9 @@
             android:name=".recyclerView.RecyclerViewActivity"
             android:screenOrientation="portrait" />
         <activity
+            android:name=".recyclerViewSample.RecyclerViewSampleActivity"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".viewPager.ViewPagerActivity"
             android:screenOrientation="portrait" />
         <activity
