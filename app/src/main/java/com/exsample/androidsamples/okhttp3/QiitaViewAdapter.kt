@@ -6,14 +6,14 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.webkit.WebViewClient
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.exsample.androidsamples.R
 import com.squareup.picasso.Picasso
+
 
 class QiitaViewAdapter(private val context: Context) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
@@ -47,12 +47,16 @@ class QiitaViewAdapter(private val context: Context) : RecyclerView.Adapter<Recy
         val data = items[position]
         holder.titleTextView.text = data.title
         holder.likeCountTextView.text = "${data.likes_count}"
+        holder.userNameTextView.text = "data.name"
         Picasso.get().load(data.user.profile_image_url).into(holder.imageView)
         holder.rootView.setOnClickListener {
-            Toast.makeText(context, "${data.title}", Toast.LENGTH_SHORT).show()
-//            val intent = Intent(context, WebViewActivity::class.java)
+//            Toast.makeText(context, "${data.title}", Toast.LENGTH_SHORT).show()
+            val intent = Intent(context, WebView::class.java)
 //            // intentにurlを渡すと...
-//            context.startActivity(intent)
+            context.startActivity(intent);
+            intent.putExtra("url",toString())
+
+
         }
     }
 
@@ -61,5 +65,6 @@ class QiitaViewAdapter(private val context: Context) : RecyclerView.Adapter<Recy
         val imageView: ImageView = view.findViewById(R.id.imageView)
         val titleTextView: TextView = view.findViewById(R.id.titleTextView)
         val likeCountTextView: TextView = view.findViewById(R.id.likeCountTextView)
+        val userNameTextView:TextView =  view.findViewById(R.id.userNameTextView)
     }
 }

@@ -15,6 +15,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".okhttp3.WebView"></activity>
         <activity
             android:name=".main.MainActivity"
             android:screenOrientation="portrait">
@@ -57,8 +58,8 @@
         <activity
             android:name=".tagView.TagViewActivity"
             android:screenOrientation="portrait" />
-        <service android:name=".service.MyService" />
 
+        <service android:name=".service.MyService" />
         <service
             android:name=".common.MyFirebaseMessagingService"
             android:exported="false">
@@ -69,12 +70,10 @@
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyC_qL-ewucXRp2VQABv_98B6xQSMcCjO4Q"/>
-
+            android:value="AIzaSyC_qL-ewucXRp2VQABv_98B6xQSMcCjO4Q" />
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_icon"
             android:resource="@drawable/ic_close_black_24dp" />
-
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_color"
             android:resource="@color/colorAccent" />
