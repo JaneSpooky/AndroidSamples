@@ -53,9 +53,9 @@ class QiitaViewAdapter(private val context: Context) : RecyclerView.Adapter<Recy
 //            Toast.makeText(context, "${data.title}", Toast.LENGTH_SHORT).show()
             val intent = Intent(context, WebView::class.java)
 //            // intentにurlを渡すと...
-            context.startActivity(intent);
+//            context.startActivity(intent);
             intent.putExtra("url",toString())
-
+            context.startActivity(intent);
 
         }
     }
