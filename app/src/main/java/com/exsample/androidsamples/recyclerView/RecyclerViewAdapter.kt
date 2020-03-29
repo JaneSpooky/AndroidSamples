@@ -22,13 +22,13 @@ class RecyclerViewAdapter(private val context: Context) : RecyclerView.Adapter<R
         notifyDataSetChanged()
     }
 
-    override fun getItemCount(): Int = items.size
+    override fun getItemCount(): Int = items.size//
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder =
         ItemViewHolder(
             LayoutInflater.from(context).inflate(
                 R.layout.recycler_view_cell,
-                parent,
+                parent
                 false
             )
         )
