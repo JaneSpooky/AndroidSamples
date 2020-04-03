@@ -6,6 +6,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.view.LayoutInflater
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.afollestad.materialdialogs.MaterialDialog
 import com.exsample.androidsamples.R
@@ -28,6 +29,7 @@ class OkHttp3Activity: BaseActivity() {
         initialize()
     }
 
+
     private fun initialize() {
         initLayout()
         initData()
@@ -41,7 +43,14 @@ class OkHttp3Activity: BaseActivity() {
 
     private fun initClick() {
         closeImageView.setOnClickListener {
-            finish()
+                finish()
+        }
+        add.setOnClickListener{
+            addpage + 1
+            Toast.makeText(this@OkHttp3Activity, "押しました", Toast.LENGTH_SHORT).show()
+            updateData()
+
+
         }
     }
 
@@ -65,10 +74,12 @@ class OkHttp3Activity: BaseActivity() {
     }
 
     private fun updateData() {
+        var addpage = 1
         val client = OkHttpClient()
         val request = Request.Builder()
-            .url("https://qiita.com/api/v2/items?page=1&per_page=20")
-            .build()
+            .url("https://qiita.com/api/v2/items?page=$addpage&per_page=2")//par_page:一回で何件取得するかpage:何ページ目を取得するか
+            .build()//$の意味は？ A.変数の中身をstringに突っ込める
+
         client.newCall(request).enqueue(object: Callback {
             override fun onFailure(call: Call, e: IOException) {
                 handler.post {

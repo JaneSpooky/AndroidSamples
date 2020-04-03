@@ -3,6 +3,8 @@ package com.exsample.androidsamples.okhttp3
 import QiitaResponse
 import android.content.Context
 import android.content.Intent
+import android.util.Log
+import android.util.Log.d
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,6 +15,7 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.exsample.androidsamples.R
 import com.squareup.picasso.Picasso
+import timber.log.Timber
 
 
 class QiitaViewAdapter(private val context: Context) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -21,7 +24,7 @@ class QiitaViewAdapter(private val context: Context) : RecyclerView.Adapter<Recy
 
     fun refresh(list: List<QiitaResponse>) {
         items.apply {
-            clear()
+            clear()//リスト内のデータをクリアする
             addAll(list)
         }
         notifyDataSetChanged()
@@ -46,16 +49,18 @@ class QiitaViewAdapter(private val context: Context) : RecyclerView.Adapter<Recy
     private fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
         val data = items[position]
         holder.titleTextView.text = data.title
-        holder.likeCountTextView.text = "${data.likes_count}"
-        holder.userNameTextView.text = "data.name"
+        holder.likeCountTextView.text = "${data.likes_count}"//$何とかで文字列ではなくデータの中身を見せろという意味
+        holder.userNameTextView.text = data.user.name
         Picasso.get().load(data.user.profile_image_url).into(holder.imageView)
         holder.rootView.setOnClickListener {
 //            Toast.makeText(context, "${data.title}", Toast.LENGTH_SHORT).show()
             val intent = Intent(context, WebView::class.java)
 //            // intentにurlを渡すと...
 //            context.startActivity(intent);
-            intent.putExtra("url",toString())
-            context.startActivity(intent);
+            intent.putExtra("url",data.url)
+
+            context.startActivity(intent)
+
 
         }
     }
