@@ -21,10 +21,15 @@ import timber.log.Timber
 class QiitaViewAdapter(private val context: Context) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private val items = mutableListOf<QiitaResponse>()
-
-    fun refresh(list: List<QiitaResponse>) {
+//    private val myActivity by lazy {OkHttp3Activity() }
+    fun clear(list: List<QiitaResponse>) {
         items.apply {
             clear()//リスト内のデータをクリアする
+        }
+    }
+    fun refresh(list: List<QiitaResponse>) {
+        items.apply {
+//            clear()//リスト内のデータをクリアする
             addAll(list)
         }
         notifyDataSetChanged()

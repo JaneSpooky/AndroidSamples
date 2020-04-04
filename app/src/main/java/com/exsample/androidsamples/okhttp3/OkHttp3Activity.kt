@@ -5,6 +5,7 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
+import android.text.method.TextKeyListener.clear
 import android.view.LayoutInflater
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -15,6 +16,7 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import kotlinx.android.synthetic.main.ok_http_activity.*
 import okhttp3.*
+import timber.log.Timber
 import java.io.IOException
 
 class OkHttp3Activity: BaseActivity() {
@@ -22,11 +24,14 @@ class OkHttp3Activity: BaseActivity() {
     private val customAdapter by lazy { QiitaViewAdapter(this) }
     private var progressDialog: MaterialDialog? = null
     private val handler = Handler()
+    var addpage = 1
+//    var you = 1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.ok_http_activity)
         initialize()
+//        println(you)
     }
 
 
@@ -46,7 +51,7 @@ class OkHttp3Activity: BaseActivity() {
                 finish()
         }
         add.setOnClickListener{
-            addpage + 1
+            addpage =addpage + 1
             Toast.makeText(this@OkHttp3Activity, "押しました", Toast.LENGTH_SHORT).show()
             updateData()
 
@@ -64,6 +69,8 @@ class OkHttp3Activity: BaseActivity() {
 
     private fun initSwipeRefreshLayout() {
         swipeRefreshLayout.setOnRefreshListener {
+            customAdapter.clear(listOf())
+            addpage = 1
             updateData()
         }
     }
@@ -74,11 +81,13 @@ class OkHttp3Activity: BaseActivity() {
     }
 
     private fun updateData() {
-        var addpage = 1
+
         val client = OkHttpClient()
         val request = Request.Builder()
-            .url("https://qiita.com/api/v2/items?page=$addpage&per_page=2")//par_page:一回で何件取得するかpage:何ページ目を取得するか
+            .url("https://qiita.com/api/v2/items?page=$addpage&per_page=5")//par_page:一回で何件取得するかpage:何ページ目を取得するか
             .build()//$の意味は？ A.変数の中身をstringに突っ込める
+        Timber.d("到着チェック")
+        println(addpage)
 
         client.newCall(request).enqueue(object: Callback {
             override fun onFailure(call: Call, e: IOException) {
