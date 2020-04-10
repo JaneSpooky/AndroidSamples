@@ -107,7 +107,7 @@ class OkHttp3Activity: BaseActivity() {
                         val list = gson.fromJson<List<QiitaResponse>>(it, type)
                         customAdapter.refresh(list)
                     } ?: run {
-                        customAdapter.refresh(listOf())
+                        customAdapter.refresh(listOf())//使える形に変換　Gsonを使用
                     }
                 }
             }

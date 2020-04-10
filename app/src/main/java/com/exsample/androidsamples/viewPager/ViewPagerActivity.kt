@@ -15,6 +15,7 @@ class ViewPagerActivity : AppCompatActivity() {
 
     private val customAdapter by lazy { CustomAdapter(supportFragmentManager) }
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.view_pager_activity)
@@ -41,6 +42,7 @@ class ViewPagerActivity : AppCompatActivity() {
         viewPager.apply {
             adapter = customAdapter
             offscreenPageLimit = customAdapter.count
+            //何ページ保持するか　この場合は全ページ
         }
     }
 
@@ -48,8 +50,11 @@ class ViewPagerActivity : AppCompatActivity() {
         tabLayout.setupWithViewPager(viewPager)
     }
 
+
     class CustomAdapter(fragmentManager: FragmentManager) :
+    //CustomAdapterの正体はFragmentPagerAdapter
         FragmentPagerAdapter(fragmentManager, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
+        //第一引数fragmentManager 第二引数BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT
         private val items: List<Item> = listOf(
             Pair(0, R.color.light_blue),
             Pair(1, R.color.light_yellow),
@@ -57,18 +62,24 @@ class ViewPagerActivity : AppCompatActivity() {
         )
             .map {
                 Item(
-                    ChildFragment().apply {
+                    sampleFragment().apply {
+                        //変数をいじるapply
                         arguments = Bundle().apply {
-                            putInt(ChildFragment.KEY_INDEX, it.first)
-                            putInt(ChildFragment.KEY_COLOR, it.second)
+                            //argumentsは、Bundle型、、　↪値を入れるために特化したもの
+                            putInt(sampleFragment.KEY_INDEX, it.first)//firstは、Pair(0,R.color.light_blue)の第一引数、を表している
+                            putInt(sampleFragment.KEY_COLOR, it.second)
+                            //Fragmentへの値の渡し方　「決まっている物」
                         }
                     }
                 )
             }
 
         override fun getCount(): Int = items.size
+        //sizeは何をあらわしている？A.スライドが何枚あるのか
         override fun getItem(position: Int): Fragment = items[position].fragment
+        //getItemにはFragmentを書く
         override fun getPageTitle(position: Int): CharSequence? = "$position"
+        //tabレイアウトに入る文字
         class Item(val fragment: Fragment)
     }
 
