@@ -58,7 +58,9 @@ class ViewPagerActivity : AppCompatActivity() {
         private val items: List<Item> = listOf(
             Pair(0, R.color.light_blue),
             Pair(1, R.color.light_yellow),
-            Pair(2, R.color.light_blue)
+            Pair(2, R.color.light_blue),
+            Pair(3, R.color.light_blue),
+            Pair(4, R.color.light_blue)
         )
             .map {
                 Item(

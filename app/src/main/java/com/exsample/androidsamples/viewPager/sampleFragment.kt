@@ -10,7 +10,9 @@ import androidx.core.content.ContextCompat
 
 import com.exsample.androidsamples.R
 import com.google.android.gms.common.api.internal.BackgroundDetector.initialize
-import kotlinx.android.synthetic.main.child_fragment.*
+import kotlinx.android.synthetic.main.fragment_sample.*
+import timber.log.Timber
+
 
 /**
  * A simple [Fragment] subclass.
@@ -31,6 +33,7 @@ class sampleFragment : Fragment() {
     }
     private fun initialize() {
         initLayout()
+        Timber.d("到着chっく")
     }
     private fun initLayout() {
                 initText()
