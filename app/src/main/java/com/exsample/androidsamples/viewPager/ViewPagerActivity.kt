@@ -56,11 +56,11 @@ class ViewPagerActivity : AppCompatActivity() {
         FragmentPagerAdapter(fragmentManager, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
         //第一引数fragmentManager 第二引数BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT
         private val items: List<Item> = listOf(
-            Pair(0, R.color.light_blue),
-            Pair(1, R.color.light_yellow),
-            Pair(2, R.color.light_blue),
-            Pair(3, R.color.light_blue),
-            Pair(4, R.color.light_blue)
+            Pair("JP", R.color.light_blue),
+            Pair("USA", R.color.light_yellow),
+            Pair("UK", R.color.light_blue),
+            Pair("CN", R.color.light_blue),
+            Pair("", R.color.light_blue)
         )
             .map {
                 Item(
@@ -68,7 +68,7 @@ class ViewPagerActivity : AppCompatActivity() {
                         //変数をいじるapply
                         arguments = Bundle().apply {
                             //argumentsは、Bundle型、、　↪値を入れるために特化したもの
-                            putInt(sampleFragment.KEY_INDEX, it.first)//firstは、Pair(0,R.color.light_blue)の第一引数、を表している
+                            putString(sampleFragment.KEY_INDEX, it.first)//firstは、Pair(0,R.color.light_blue)の第一引数、を表している
                             putInt(sampleFragment.KEY_COLOR, it.second)
                             //Fragmentへの値の渡し方　「決まっている物」
                         }

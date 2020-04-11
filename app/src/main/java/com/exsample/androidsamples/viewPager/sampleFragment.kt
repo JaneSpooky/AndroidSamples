@@ -40,7 +40,7 @@ class sampleFragment : Fragment() {
         initColor()
     }
     private fun initText() {
-        textView.text = "${arguments?.getInt(KEY_INDEX)}"
+        textView.text = "${arguments?.getString(KEY_INDEX)}"
     }
 
     private fun initColor() {
@@ -50,7 +50,7 @@ class sampleFragment : Fragment() {
     }
 
     companion object {
-        const val KEY_INDEX = "key_index"
+        const val KEY_INDEX = "key_string"
         const val KEY_COLOR = "key_color"
     }//クラスに対して一個しかない　インスタンスは、三つある 定数置き場
 }
