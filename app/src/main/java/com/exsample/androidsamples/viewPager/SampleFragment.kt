@@ -63,7 +63,7 @@ class SampleFragment : Fragment() {
     private fun initClick() {
 
         addb.setOnClickListener{
-            addpage =addpage + 1
+            addpage++
             Toast.makeText(activity!!, "押しました", Toast.LENGTH_SHORT).show()
             updateData()
 

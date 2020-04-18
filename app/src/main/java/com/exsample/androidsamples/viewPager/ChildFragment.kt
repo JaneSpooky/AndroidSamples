@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import com.exsample.androidsamples.R
 import com.exsample.androidsamples.base.BaseFragment
 import kotlinx.android.synthetic.main.child_fragment.*
+import timber.log.Timber
 
 class ChildFragment: BaseFragment() {//　Fragmentは、ほとんどアクティビティと一緒
 
@@ -22,6 +23,7 @@ class ChildFragment: BaseFragment() {//　Fragmentは、ほとんどアクティ
         //処理は、ここから書く　ライフサイクル（アクティビティが生まれて死ぬまで、）
         super.onViewCreated(view, savedInstanceState)
         initialize()
+        Timber.d("子供だな")
     }
 
     private fun initialize() {
@@ -29,22 +31,22 @@ class ChildFragment: BaseFragment() {//　Fragmentは、ほとんどアクティ
     }
 
     private fun initLayout() {
-        initText()
-        initColor()
+//        initText()
+//        initColor()
     }
 
-    private fun initText() {
-        textView.text = "${arguments?.getInt(KEY_INDEX)}"
-    }
+//    private fun initText() {
+//        textView.text = "${arguments?.getInt(KEY_INDEX)}"
+//    }
+//
+//    private fun initColor() {
+//        context?.also {
+//            rootView.setBackgroundColor(ContextCompat.getColor(it, arguments?.getInt(KEY_COLOR) ?: android.R.color.white))
+//        }//背景色を変えている
+//    }
 
-    private fun initColor() {
-        context?.also {
-            rootView.setBackgroundColor(ContextCompat.getColor(it, arguments?.getInt(KEY_COLOR) ?: android.R.color.white))
-        }//背景色を変えている
+//    companion object {
+//        const val KEY_INDEX = "key_index"
+//        const val KEY_COLOR = "key_color"
+//    }//クラスに対して一個しかない　インスタンスは、三つある 定数置き場
     }
-
-    companion object {
-        const val KEY_INDEX = "key_index"
-        const val KEY_COLOR = "key_color"
-    }//クラスに対して一個しかない　インスタンスは、三つある 定数置き場
-}

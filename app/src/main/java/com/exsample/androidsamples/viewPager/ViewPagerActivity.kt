@@ -56,9 +56,10 @@ class ViewPagerActivity : AppCompatActivity() {
         FragmentPagerAdapter(fragmentManager, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
         //第一引数fragmentManager 第二引数BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT
         private val items =
-            listOf("一覧")
+            listOf("一覧","お気に入り")
             .map{
                 Item(SampleFragment(), it)
+                Item(ChildFragment(),it)
 
             } // タイトルのリストからItemのリストへ変換
         override fun getCount(): Int = items.size
@@ -77,7 +78,7 @@ class ViewPagerActivity : AppCompatActivity() {
 //                        //変数をいじるapply
 //                        arguments = Bundle().apply {
 //                            //argumentsは、Bundle型、、　↪値を入れるために特化したもの
-//                            putString(SampleFragment.KEY_INDEX, it.first)//firstは、Pair(0,R.color.light_blue)の第一引数、を表999999999999いる
+//                            putString(SampleFragment.KEY_INDEX, it.first)//firstは、Pair(0,R.color.light_blue)の第一引数、を表している
 //                            putInt(SampleFragment.KEY_COLOR, it.second)
 //                            //Fragmentへの値の渡し方　「決まっている物」
 //                        }
