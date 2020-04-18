@@ -18,7 +18,7 @@ import com.squareup.picasso.Picasso
 import timber.log.Timber
 
 
-class QiitaViewAdapter(private val context: Context) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class QiitaViewAdapter(private val context: Context) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {//context;Contextって何？
 
     private val items = mutableListOf<QiitaResponse>()
 //    private val myActivity by lazy {OkHttp3Activity() }
@@ -35,9 +35,9 @@ class QiitaViewAdapter(private val context: Context) : RecyclerView.Adapter<Recy
         notifyDataSetChanged()
     }
 
-    override fun getItemCount(): Int = items.size
+    override fun getItemCount(): Int = items.size//ここでアイテムの数を把握する
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder =
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder =//ここで各アイテムのVIewHolderを生成する
         ItemViewHolder(
             LayoutInflater.from(context).inflate(
                 R.layout.qiita_view_cell,
@@ -46,7 +46,7 @@ class QiitaViewAdapter(private val context: Context) : RecyclerView.Adapter<Recy
             )
         )
 
-    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {//RcyclerViewに対して、ViewHolderが紐付いたときに呼ばれる
         if (holder is ItemViewHolder)
             onBindViewHolder(holder, position)
     }

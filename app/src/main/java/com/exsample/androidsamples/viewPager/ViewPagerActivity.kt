@@ -1,7 +1,6 @@
 package com.exsample.androidsamples.viewPager
 
 import android.app.Activity
-import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -9,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import com.exsample.androidsamples.R
+import com.exsample.androidsamples.okhttp3.QiitaViewAdapter
 import kotlinx.android.synthetic.main.view_pager_activity.*
 
 class ViewPagerActivity : AppCompatActivity() {
@@ -34,7 +34,7 @@ class ViewPagerActivity : AppCompatActivity() {
 
     private fun initClick() {
         closeImageView.setOnClickListener {
-            finish()
+            finish()//activityで使えるメゾット
         }
     }
 
@@ -55,34 +55,45 @@ class ViewPagerActivity : AppCompatActivity() {
     //CustomAdapterの正体はFragmentPagerAdapter
         FragmentPagerAdapter(fragmentManager, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
         //第一引数fragmentManager 第二引数BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT
-        private val items: List<Item> = listOf(
-            Pair("JP", R.color.light_blue),
-            Pair("USA", R.color.light_yellow),
-            Pair("UK", R.color.light_blue),
-            Pair("CN", R.color.light_blue),
-            Pair("", R.color.light_blue)
-        )
-            .map {
-                Item(
-                    sampleFragment().apply {
-                        //変数をいじるapply
-                        arguments = Bundle().apply {
-                            //argumentsは、Bundle型、、　↪値を入れるために特化したもの
-                            putString(sampleFragment.KEY_INDEX, it.first)//firstは、Pair(0,R.color.light_blue)の第一引数、を表している
-                            putInt(sampleFragment.KEY_COLOR, it.second)
-                            //Fragmentへの値の渡し方　「決まっている物」
-                        }
-                    }
-                )
-            }
+        private val items =
+            listOf("一覧")
+            .map{
+                Item(SampleFragment(), it)
 
+            } // タイトルのリストからItemのリストへ変換
         override fun getCount(): Int = items.size
-        //sizeは何をあらわしている？A.スライドが何枚あるのか
         override fun getItem(position: Int): Fragment = items[position].fragment
-        //getItemにはFragmentを書く
-        override fun getPageTitle(position: Int): CharSequence? = "$position"
-        //tabレイアウトに入る文字
-        class Item(val fragment: Fragment)
+        override fun getPageTitle(position: Int): CharSequence? = items[position].title // これでTabLayoutのタイトルが返ります
+        class Item(val fragment: Fragment, val title: String)
+
+//        private val items: List<Item> = listOf(
+//           Triple("リサイクラービュー",R.color.light_yellow,""),
+//            Triple("お気に入りフラグメント",R.color.light_yellow,"")
+//
+//        )
+//            .map {
+//                Item(
+//                    SampleFragment().apply {
+//                        //変数をいじるapply
+//                        arguments = Bundle().apply {
+//                            //argumentsは、Bundle型、、　↪値を入れるために特化したもの
+//                            putString(SampleFragment.KEY_INDEX, it.first)//firstは、Pair(0,R.color.light_blue)の第一引数、を表999999999999いる
+//                            putInt(SampleFragment.KEY_COLOR, it.second)
+//                            //Fragmentへの値の渡し方　「決まっている物」
+//                        }
+//                    }
+//                )
+//            }
+
+//        override fun getCount(): Int = items.size
+//        //sizeは何をあらわしている？A.スライドが何枚あるのか
+//        override fun getItem(position: Int): Fragment = items[position].fragment
+//        //getItemにはFragmentを書く
+//        override fun getPageTitle(position: Int): CharSequence? ="$position"
+//        //tabレイアウトに入る文字
+//        class Item(val fragment: Fragment)
+
+
     }
 
     companion object {
@@ -90,3 +101,5 @@ class ViewPagerActivity : AppCompatActivity() {
             activity.startActivity(Intent(activity, ViewPagerActivity::class.java))
     }
 }
+
+
