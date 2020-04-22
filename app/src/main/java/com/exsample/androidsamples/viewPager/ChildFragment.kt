@@ -13,6 +13,7 @@ import timber.log.Timber
 
 class ChildFragment: BaseFragment() {//　Fragmentは、ほとんどアクティビティと一緒
 
+    private lateinit var mRealm : Realm
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         //onCreateViewをまず書く　　戻り値がView
         return layoutInflater.inflate(R.layout.child_fragment, container, false)
@@ -22,9 +23,16 @@ class ChildFragment: BaseFragment() {//　Fragmentは、ほとんどアクティ
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         //処理は、ここから書く　ライフサイクル（アクティビティが生まれて死ぬまで、）
         super.onViewCreated(view, savedInstanceState)
+        Realm.init(this)
+        mRealm = Realm.getDefaultInstance()
+        val realmConfig = RealmConfiguration.Builder()
+            .deleteRealmIfMigrationNeeded()
+            .build()
+        mRealm = Realm.getInstance(realmConfig)
         initialize()
-        Timber.d("子供だな")
+        
     }
+
 
     private fun initialize() {
         initLayout()//ココをわざわざ分割する必要があるのか
@@ -34,6 +42,7 @@ class ChildFragment: BaseFragment() {//　Fragmentは、ほとんどアクティ
 //        initText()
 //        initColor()
     }
+
 
 //    private fun initText() {
 //        textView.text = "${arguments?.getInt(KEY_INDEX)}"

@@ -56,12 +56,12 @@ class ViewPagerActivity : AppCompatActivity() {
         FragmentPagerAdapter(fragmentManager, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
         //第一引数fragmentManager 第二引数BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT
         private val items =
-            listOf("一覧","お気に入り")
-            .map{
-                Item(SampleFragment(), it)
-                Item(ChildFragment(),it)
-
-            } // タイトルのリストからItemのリストへ変換
+            listOf(Item(SampleFragment(), "一覧"), Item(ChildFragment(), "お気に入り"))
+//            .map{
+//                Item(SampleFragment(), it)
+//                Item(ChildFragment(),it)
+//
+//            } // タイトルのリストからItemのリストへ変換
         override fun getCount(): Int = items.size
         override fun getItem(position: Int): Fragment = items[position].fragment
         override fun getPageTitle(position: Int): CharSequence? = items[position].title // これでTabLayoutのタイトルが返ります

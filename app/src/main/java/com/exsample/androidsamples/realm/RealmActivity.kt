@@ -9,4 +9,5 @@ class RealmActivity: BaseActivity() {
     companion object {
         fun start(activity: Activity) = activity.startActivity(Intent(activity, RealmActivity::class.java))
     }
+
 }
