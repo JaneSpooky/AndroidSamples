@@ -8,6 +8,8 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.exsample.androidsamples.R
 import com.exsample.androidsamples.base.BaseFragment
+import io.realm.Realm
+import io.realm.RealmConfiguration
 import kotlinx.android.synthetic.main.child_fragment.*
 import timber.log.Timber
 
@@ -23,7 +25,7 @@ class ChildFragment: BaseFragment() {//　Fragmentは、ほとんどアクティ
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         //処理は、ここから書く　ライフサイクル（アクティビティが生まれて死ぬまで、）
         super.onViewCreated(view, savedInstanceState)
-        Realm.init(this)
+        Realm.init(activity)
         mRealm = Realm.getDefaultInstance()
         val realmConfig = RealmConfiguration.Builder()
             .deleteRealmIfMigrationNeeded()

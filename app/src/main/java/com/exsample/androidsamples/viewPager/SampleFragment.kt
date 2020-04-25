@@ -1,7 +1,6 @@
 package com.exsample.androidsamples.viewPager
 
 
-import QiitaResponse
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
@@ -17,6 +16,7 @@ import com.afollestad.materialdialogs.MaterialDialog
 
 import com.exsample.androidsamples.R
 import com.exsample.androidsamples.okhttp3.OkHttp3Activity
+import com.exsample.androidsamples.okhttp3.QiitaResponse
 import com.exsample.androidsamples.okhttp3.QiitaViewAdapter
 import com.google.android.gms.common.api.internal.BackgroundDetector.initialize
 import com.google.gson.Gson

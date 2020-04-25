@@ -1,3 +1,4 @@
+package com.exsample.androidsamples.okhttp3
 import com.google.gson.annotations.SerializedName
 
 /*
