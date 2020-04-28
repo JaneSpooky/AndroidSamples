@@ -41,21 +41,21 @@ class TagView: LinearLayout {
         initialize(ctx)
     }
     constructor(ctx: Context, attrs: AttributeSet?) : super(ctx, attrs) {
-        initialize(ctx, attrs, R.attr.tagViewStyle)
+        initialize(ctx, attrs)
     }
     constructor(ctx: Context, attrs: AttributeSet?, defStyleAttr: Int) : super(ctx, attrs, defStyleAttr) {
         initialize(ctx, attrs, defStyleAttr)
     }
 
-    private fun initialize(ctx: Context, attrs: AttributeSet? = null, defStyleAttr: Int = R.attr.tagViewStyle) {
-        var typedArray = ctx.obtainStyledAttributes(attrs, R.styleable.View, defStyleAttr, 0)
+    private fun initialize(ctx: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) {
+//        var typedArray = ctx.obtainStyledAttributes(attrs, R.styleable.View, defStyleAttr, 0)
 //        fontSize = typedArray.getDimension(R.styleable.TagView_textSize, 10F)
 //        tagMargin = typedArray.getDimensionPixelSize(R.styleable.TagView_tagMargin, 0)
 //        tagPadding = typedArray.getDimensionPixelSize(R.styleable.TagView_tagPadding, 0)
 //        fontColor = typedArray.getColor(R.styleable.TagView_textColor, -1)
 //        textViewBackgroundColor = typedArray.getColor(R.styleable.TagView_backgroundColor, -1)
 //        textViewBackgroundDrawable = typedArray.getDrawable(R.styleable.TagView_backgroundDrawable)
-        typedArray.recycle()
+//        typedArray.recycle()
         Timber.d("fontSize:$fontSize tagMargin:$tagMargin tagPadding:$tagPadding fontColor:$fontColor textViewBackgroundColor:$textViewBackgroundColor textViewBackgroundDrawable:$textViewBackgroundDrawable")
     }
 
@@ -89,7 +89,7 @@ class TagView: LinearLayout {
         val textView = makeTextView(tag, currentSize)
         horizontalLinearLayouts.last().addView(textView, LayoutParams(if (textWidth < width) LayoutParams.WRAP_CONTENT else LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT).apply {
             setMargins(0, 0, tagMargin, 0)
-            setPadding(tagPadding)
+//            setPadding(tagPadding)
         })
         textViews.add(textView)
         currentSize++
@@ -100,7 +100,7 @@ class TagView: LinearLayout {
             return true
         if (horizontalLinearLayouts.last().childCount == 0)
             return false
-        val remainingWidth = width - horizontalLinearLayouts.last().children.map { it.width }.sum() - horizontalLinearLayouts.last().size * tagMargin
+        val remainingWidth = width// - horizontalLinearLayouts.last().children.map { it.width }.sum() - horizontalLinearLayouts.last().size * tagMargin
         val textWidth = getTextWidth(tag) + tagMargin + tagPadding * 2
         Timber.d("width:$width remainingWidth:$remainingWidth textWidth:$textWidth")
         return textWidth > remainingWidth
