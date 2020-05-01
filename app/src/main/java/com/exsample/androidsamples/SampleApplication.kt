@@ -6,6 +6,8 @@ import android.graphics.Point
 import android.util.DisplayMetrics
 import android.view.WindowManager
 import timber.log.Timber
+import io.realm.Realm
+import io.realm.RealmConfiguration
 
 class SampleApplication: Application() {
 
@@ -17,11 +19,19 @@ class SampleApplication: Application() {
 
     private fun initialize() {
         initTimber()
+        initRealm()
         initDisplay()
     }
 
     private fun initTimber() {
         Timber.plant(Timber.DebugTree())
+    }
+
+    private fun initRealm() {
+        Realm.init(this)
+        Realm.setDefaultConfiguration(RealmConfiguration.Builder()
+            .deleteRealmIfMigrationNeeded()
+            .build())
     }
 
     private fun initDisplay() {
