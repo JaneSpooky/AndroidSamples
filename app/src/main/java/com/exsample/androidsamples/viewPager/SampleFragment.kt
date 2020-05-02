@@ -23,6 +23,7 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import kotlinx.android.synthetic.main.fragment_sample.*
 import kotlinx.android.synthetic.main.ok_http_activity.*
+import kotlinx.android.synthetic.main.qiita_view_cell.*
 import okhttp3.*
 import timber.log.Timber
 import java.io.IOException
@@ -61,11 +62,15 @@ class SampleFragment : Fragment() {
     }
 
     private fun initClick() {
+        clipmaster_errer.setOnClickListener {
+           Timber.d("お気に入りに追加" )
+        }
 
         addb.setOnClickListener{
             addpage++
             Toast.makeText(activity!!, "押しました", Toast.LENGTH_SHORT).show()
             updateData()
+
 
 
         }
