@@ -10,9 +10,11 @@ import android.view.ViewGroup
 import android.webkit.WebViewClient
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.exsample.androidsamples.R
+import com.exsample.androidsamples.viewPager.SampleFragment
 import com.squareup.picasso.Picasso
 import timber.log.Timber
 
@@ -42,9 +44,9 @@ class QiitaViewAdapter(private val context: Context) : RecyclerView.Adapter<Recy
                 R.layout.qiita_view_cell,
                 parent,
                 false
+
             )
         )
-
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {//RcyclerViewに対して、ViewHolderが紐付いたときに呼ばれる
         if (holder is ItemViewHolder)
             onBindViewHolder(holder, position)
@@ -56,6 +58,9 @@ class QiitaViewAdapter(private val context: Context) : RecyclerView.Adapter<Recy
         holder.likeCountTextView.text = "${data.likes_count}"//$何とかで文字列ではなくデータの中身を見せろという意味
         holder.userNameTextView.text = data.user.name
         Picasso.get().load(data.user.profile_image_url).into(holder.imageView)
+        holder.clipmaster_errer.setOnClickListener{
+            Toast.makeText(context, "爆弾処理完了", Toast.LENGTH_SHORT).show()
+        }
         holder.rootView.setOnClickListener {
 //            Toast.makeText(context, "${data.title}", Toast.LENGTH_SHORT).show()
             val intent = Intent(context, WebView::class.java)
@@ -75,5 +80,6 @@ class QiitaViewAdapter(private val context: Context) : RecyclerView.Adapter<Recy
         val titleTextView: TextView = view.findViewById(R.id.titleTextView)
         val likeCountTextView: TextView = view.findViewById(R.id.likeCountTextView)
         val userNameTextView:TextView =  view.findViewById(R.id.userNameTextView)
+        val clipmaster_errer : ImageView = view.findViewById(R.id.clipmaster_errer)
     }
 }

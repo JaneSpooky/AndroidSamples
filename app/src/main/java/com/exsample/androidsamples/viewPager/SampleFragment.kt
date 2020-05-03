@@ -62,17 +62,11 @@ class SampleFragment : Fragment() {
     }
 
     private fun initClick() {
-        clipmaster_errer.setOnClickListener {
-           Timber.d("お気に入りに追加" )
-        }
 
         addb.setOnClickListener{
             addpage++
             Toast.makeText(activity!!, "押しました", Toast.LENGTH_SHORT).show()
             updateData()
-
-
-
         }
     }
 
