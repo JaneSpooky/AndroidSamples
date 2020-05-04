@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import com.exsample.androidsamples.R
 import com.exsample.androidsamples.base.BaseFragment
 import io.realm.Realm
+import kotlinx.android.synthetic.main.child_fragment.*
 
 class ChildFragment: BaseFragment() {//　Fragmentは、ほとんどアクティビティと一緒
 
@@ -31,14 +32,15 @@ class ChildFragment: BaseFragment() {//　Fragmentは、ほとんどアクティ
     }
 
     private fun initLayout() {
-//        initText()
+        initText()
 //        initColor()
     }
 
 
-//    private fun initText() {
-//        textView.text = "${arguments?.getInt(KEY_INDEX)}"
-//    }
+    private fun initText() {
+        val favoriteList = QiitaRealm.findAll()
+        textView.text = favoriteList.joinToString(separator = "\n") { "${it.id}:${it.title}" }
+    }
 //
 //    private fun initColor() {
 //        context?.also {

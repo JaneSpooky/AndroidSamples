@@ -14,8 +14,10 @@ import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.exsample.androidsamples.R
+import com.exsample.androidsamples.viewPager.QiitaRealm
 import com.exsample.androidsamples.viewPager.SampleFragment
 import com.squareup.picasso.Picasso
+import io.realm.Realm
 import timber.log.Timber
 
 
@@ -60,6 +62,7 @@ class QiitaViewAdapter(private val context: Context) : RecyclerView.Adapter<Recy
         Picasso.get().load(data.user.profile_image_url).into(holder.imageView)
         holder.clipmaster_errer.setOnClickListener{
             Toast.makeText(context, "爆弾処理完了", Toast.LENGTH_SHORT).show()
+            saveRealm(data)
         }
         holder.rootView.setOnClickListener {
 //            Toast.makeText(context, "${data.title}", Toast.LENGTH_SHORT).show()
@@ -71,6 +74,30 @@ class QiitaViewAdapter(private val context: Context) : RecyclerView.Adapter<Recy
             context.startActivity(intent)
 
 
+        }
+    }
+
+    private fun saveRealm(data: QiitaResponse) {
+        Realm.getDefaultInstance().executeTransaction { realm ->
+            var qiitaRealm = QiitaRealm().apply {
+                id = data.id
+                title = data.title
+                body = data.body
+            }
+            realm.insertOrUpdate(qiitaRealm)
+        }
+    }
+
+    private fun saveRealm(list: List<QiitaResponse>) {
+        Realm.getDefaultInstance().executeTransaction { realm ->
+            list.map {
+                QiitaRealm().apply {
+                    id = it.id
+                    title = it.title
+                }
+            }.forEach { qiitaRealm ->
+                realm.insertOrUpdate(qiitaRealm)
+            }
         }
     }
 
