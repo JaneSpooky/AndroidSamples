@@ -9,6 +9,7 @@ open class QiitaRealm: RealmObject() {
     var id: String = ""
     var title: String = ""
     var body: String = ""
+    var url : String = ""
 
     companion object {
         fun findAll(): List<QiitaRealm> =

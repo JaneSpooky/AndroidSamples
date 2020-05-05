@@ -1,30 +1,33 @@
-package com.exsample.androidsamples.okhttp3
+package com.exsample.androidsamples.viewPager
 
 import android.content.Context
 import android.content.Intent
-import android.util.Log
-import android.util.Log.d
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.webkit.WebViewClient
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.afollestad.materialdialogs.MaterialDialog
 import com.exsample.androidsamples.R
-import com.exsample.androidsamples.viewPager.QiitaRealm
-import com.exsample.androidsamples.viewPager.SampleFragment
+import com.exsample.androidsamples.okhttp3.QiitaResponse
+import com.exsample.androidsamples.okhttp3.WebView
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import com.squareup.picasso.Picasso
 import io.realm.Realm
+import kotlinx.android.synthetic.main.fragment_sample.*
+import okhttp3.*
 import timber.log.Timber
+import java.io.IOException
 
-
-class QiitaViewAdapter(private val context: Context) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {//context;Contextって何？
+class QiitaChildAdapter   (private val context: Context) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {//context;Contextって何？
 
     private val items = mutableListOf<QiitaResponse>()
-//    private val myActivity by lazy {OkHttp3Activity() }
+    //    private val myActivity by lazy {OkHttp3Activity() }
     fun clear(list: List<QiitaResponse>) {
         items.apply {
             clear()//リスト内のデータをクリアする
@@ -43,13 +46,13 @@ class QiitaViewAdapter(private val context: Context) : RecyclerView.Adapter<Recy
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder =//ここで各アイテムのVIewHolderを生成する
         ItemViewHolder(
             LayoutInflater.from(context).inflate(
-                R.layout.qiita_view_cell,
+                R.layout.qiita_child_cell,
                 parent,
                 false
 
             )
         )
-    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {//RcyclerViewに対して、ViewHolderが紐付いたときに呼ばれる
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {//RecyclerViewに対して、ViewHolderが紐付いたときに呼ばれる
         if (holder is ItemViewHolder)
             onBindViewHolder(holder, position)
     }
@@ -57,13 +60,8 @@ class QiitaViewAdapter(private val context: Context) : RecyclerView.Adapter<Recy
     private fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
         val data = items[position]
         holder.titleTextView.text = data.title
-        holder.likeCountTextView.text = "${data.likes_count}"//$何とかで文字列ではなくデータの中身を見せろという意味
         holder.userNameTextView.text = data.user.name
         Picasso.get().load(data.user.profile_image_url).into(holder.imageView)
-        holder.clipmaster.setOnClickListener{
-            Toast.makeText(context, "お気に入り追加完了", Toast.LENGTH_SHORT).show()
-            saveRealm(data)
-        }
         holder.rootView.setOnClickListener {
 //            Toast.makeText(context, "${data.title}", Toast.LENGTH_SHORT).show()
             val intent = Intent(context, WebView::class.java)
@@ -104,11 +102,12 @@ class QiitaViewAdapter(private val context: Context) : RecyclerView.Adapter<Recy
     }
 
     class ItemViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val rootView: ConstraintLayout = view.findViewById(R.id.rootView)
-        val imageView: ImageView = view.findViewById(R.id.imageView)
-        val titleTextView: TextView = view.findViewById(R.id.titleTextView)
-        val likeCountTextView: TextView = view.findViewById(R.id.likeCountTextView)
-        val userNameTextView:TextView =  view.findViewById(R.id.userNameTextView)
-        val clipmaster: ImageView = view.findViewById(R.id.clipmaster_errer)
+        val rootView: ConstraintLayout = view.findViewById(R.id.child_rootView)
+        val imageView: ImageView = view.findViewById(R.id.child_imageView)
+        val titleTextView: TextView = view.findViewById(R.id.child_titleTextView)
+        val userNameTextView: TextView =  view.findViewById(R.id.child_userNameTextView)
     }
 }
+
+
+
