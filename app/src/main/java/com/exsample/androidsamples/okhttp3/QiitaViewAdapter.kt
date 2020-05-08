@@ -49,7 +49,7 @@ class QiitaViewAdapter(private val context: Context) : RecyclerView.Adapter<Recy
 
             )
         )
-    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {//RcyclerViewに対して、ViewHolderが紐付いたときに呼ばれる
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {//RecyclerViewに対して、ViewHolderが紐付いたときに呼ばれる
         if (holder is ItemViewHolder)
             onBindViewHolder(holder, position)
     }

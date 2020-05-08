@@ -13,9 +13,9 @@ open class QiitaRealm: RealmObject() {
 
     companion object {
         fun findAll(): List<QiitaRealm> =
-            Realm.getDefaultInstance().use { realm ->
+            Realm.getDefaultInstance().use { realm ->//useの前のインスタンスが引数として使えるよになる
                 realm.where(QiitaRealm::class.java)
-                    .sort(QiitaRealm::id.name)
+                    .sort("id")
                     .findAll()
                     .also {
                         realm.copyFromRealm(it)

@@ -5,6 +5,7 @@ import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.afollestad.materialdialogs.MaterialDialog
 import com.exsample.androidsamples.R
@@ -12,9 +13,11 @@ import com.exsample.androidsamples.base.BaseFragment
 import io.realm.Realm
 import kotlinx.android.synthetic.main.child_fragment.*
 import kotlinx.android.synthetic.main.fragment_sample.*
+import kotlinx.android.synthetic.main.recycler_view_activity.*
+import timber.log.Timber
 
 class ChildFragment: BaseFragment() {//　Fragmentは、ほとんどアクティビティと一緒
-private val customAdapter2 by lazy { QiitaChildAdapter(activity!!) }
+private val childCustomAdapter by lazy { QiitaChildAdapter(activity!!) }
     private var progressDialog: MaterialDialog? = null
     private val handler = Handler()
     private lateinit var mRealm : Realm
@@ -35,13 +38,19 @@ private val customAdapter2 by lazy { QiitaChildAdapter(activity!!) }
 
     private fun initialize() {
         initLayout()
-        initData()
     }
 
     private fun initLayout() {
         initClick()
         initRecyclerView()
         initSwipeRefreshLayout()
+        initText()
+        hideProgress()
+    }
+
+    private fun initText(){
+//        val favoritList =QiitaRealm.findAll()
+//        textView.text = favoritList.joinToString(separator = "/n"){"$it.id"}
     }
 
     private fun initClick() {
@@ -51,7 +60,7 @@ private val customAdapter2 by lazy { QiitaChildAdapter(activity!!) }
 
     private fun initRecyclerView() {
         child_recyclerView.apply {
-            adapter = customAdapter2
+            adapter = childCustomAdapter
             setHasFixedSize(true)
             layoutManager = LinearLayoutManager(context)
         }
@@ -59,58 +68,25 @@ private val customAdapter2 by lazy { QiitaChildAdapter(activity!!) }
 
     private fun initSwipeRefreshLayout() {
         child_swipeRefreshLayout.setOnRefreshListener {
-            customAdapter2.clear(listOf())
-//            addpage = 1
-//            updateData()
+            childCustomAdapter.clear(listOf())
+            initData()
         }
     }
 
     private fun initData() {
-        showProgress()
+        child_swipeRefreshLayout.isRefreshing = false//くるくるを止めるやつ
+        Timber.d("ふなっしー")
     }
 
-//    private fun updateData() {
-//
-//        val client = OkHttpClient()
-//        val request = Request.Builder()
-//            .url("https://qiita.com/api/v2/items?page=$addpage&per_page=5")//par_page:一回で何件取得するかpage:何ページ目を取得するか
-//            .build()//$の意味は？ A.変数の中身をstringに突っ込める
-//        Timber.d("到着チェック")
-//        println(addpage)
-//
-//        client.newCall(request).enqueue(object: Callback {
-//            override fun onFailure(call: Call, e: IOException) {
-//                handler.post {
-//                    hideProgress()
-//                    swipeRefreshLayout2.isRefreshing = false
-//                    customAdapter.refresh(listOf())
-//                }
-//            }
-//            override fun onResponse(call: Call, response: Response) {
-//                handler.post {
-//                    hideProgress()
-//                    swipeRefreshLayout2.isRefreshing = false
-//                    response.body?.string()?.also {
-//                        val gson = Gson()
-//                        val type = object : TypeToken<List<QiitaResponse>>() {}.type
-//                        val list = gson.fromJson<List<QiitaResponse>>(it, type)
-//                        customAdapter.refresh(list)
-//                    } ?: run {
-//                        customAdapter.refresh(listOf())//使える形に変換　Gsonを使用
-//                    }
-//                }
-//            }
-//        })
+
+//    private fun showProgress() {
+//        hideProgress()
+//        progressDialog = MaterialDialog(activity!!).apply {
+//            cancelable(false)
+//            setContentView(LayoutInflater.from(activity!!).inflate(R.layout.progress_dialog, null, false))
+//            show()
+//        }
 //    }
-
-    private fun showProgress() {
-        hideProgress()
-        progressDialog = MaterialDialog(activity!!).apply {
-            cancelable(false)
-            setContentView(LayoutInflater.from(activity!!).inflate(R.layout.progress_dialog, null, false))
-            show()
-        }
-    }
 
     private fun hideProgress() {
         progressDialog?.dismiss()
