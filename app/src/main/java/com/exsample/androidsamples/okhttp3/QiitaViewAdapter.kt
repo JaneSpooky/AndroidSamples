@@ -38,10 +38,14 @@ class QiitaViewAdapter(private val context: Context) : RecyclerView.Adapter<Recy
         notifyDataSetChanged()
     }
 
-    override fun getItemCount(): Int = items.size//ここでアイテムの数を把握する
+    override fun getItemCount(): Int {
+        Timber.d("getItemCount count:${items.size}")
+        return items.size
+    }//ここでアイテムの数を把握する
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder =//ここで各アイテムのVIewHolderを生成する
-        ItemViewHolder(
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {//ここで各アイテムのVIewHolderを生成する
+        Timber.i("onCreateViewHolder")
+        return ItemViewHolder(
             LayoutInflater.from(context).inflate(
                 R.layout.qiita_view_cell,
                 parent,
@@ -49,7 +53,9 @@ class QiitaViewAdapter(private val context: Context) : RecyclerView.Adapter<Recy
 
             )
         )
+    }
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {//RecyclerViewに対して、ViewHolderが紐付いたときに呼ばれる
+        Timber.w("onBindViewHolder")
         if (holder is ItemViewHolder)
             onBindViewHolder(holder, position)
     }
@@ -83,7 +89,7 @@ class QiitaViewAdapter(private val context: Context) : RecyclerView.Adapter<Recy
                 id = data.id
                 title = data.title
                 url = data.url
-
+                imageUrl = data.user.profile_image_url
             }
             realm.insertOrUpdate(qiitaRealm)//DBにデータを入れることをinsertという
         }

@@ -60,11 +60,25 @@ private val childCustomAdapter by lazy { QiitaChildAdapter(activity!!) }
     }
 
     private fun initRecyclerView() {
+        childCustomAdapter.callback = object: QiitaChildAdapter.QiitaChildAdapterCallback {
+            override fun onClickDeleteButton(data: QiitaRealm) {
+                deleteRealm(data)
+            }
+        }
+
+
         child_recyclerView.apply {
             adapter = childCustomAdapter
             setHasFixedSize(true)
             layoutManager = LinearLayoutManager(context)
         }
+    }
+
+    private fun deleteRealm(data: QiitaRealm) {
+        Realm.getDefaultInstance().executeTransaction {
+            data.deleteFromRealm()
+        }
+        initData()
     }
 
     private fun initSwipeRefreshLayout() {
@@ -75,7 +89,7 @@ private val childCustomAdapter by lazy { QiitaChildAdapter(activity!!) }
     }
 
     private fun initData() {
-        child_swipeRefreshLayout.isRefreshing = false//くるくるを止めるやつ
+        child_swipeRefreshLayout.isRefreshing = false //くるくるを止めるやつ
         Timber.d("ふなっしー")
         childCustomAdapter.refreshes(QiitaRealm.findAll())
     }

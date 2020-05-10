@@ -5,6 +5,7 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
@@ -35,7 +36,7 @@ class QiitaChildAdapter(private val context: Context) : RecyclerView.Adapter<Rec
     }
     fun refreshes(list: List<QiitaRealm>) {//これは、initData()みたいに呼び出さなくても勝手に発動するの？　　違うっぽい、、
         items.apply {
-//            clear()//リスト内のデータをクリアする
+            clear()//リスト内のデータをクリアする
             addAll(list)
         }
         notifyDataSetChanged()
@@ -60,9 +61,9 @@ class QiitaChildAdapter(private val context: Context) : RecyclerView.Adapter<Rec
     private fun onBindViewHolder(holder: ItemViewHolder2, position: Int) {
         val favoriteList =QiitaRealm.findAll()
         val data = items[position]
-        holder.childTitleTextView.text = favoriteList.joinToString{"$it.title"}
+        holder.childTitleTextView.text = favoriteList.joinToString{"${it.title}"}
         holder.childNameTextView.text = favoriteList.joinToString{"$it.title"}
-//        Picasso.get().load(data.user.profile_image_url).into(holder.childImageView)
+        Picasso.get().load(data.imageUrl).into(holder.childImageView)
         holder.childRootView.setOnClickListener {
 //            Toast.makeText(context, "${data.title}", Toast.LENGTH_SHORT).show()
             val intent = Intent(context, WebView::class.java)
@@ -72,7 +73,21 @@ class QiitaChildAdapter(private val context: Context) : RecyclerView.Adapter<Rec
             context.startActivity(intent)
          Timber.d("touchali")
         }
+        holder.deleteButton.setOnClickListener {
+            callback?.onClickDeleteButton(data)
+        }
     }
+
+    var callback : QiitaChildAdapterCallback? = null
+
+    interface QiitaChildAdapterCallback {
+        fun onClickDeleteButton(data : QiitaRealm)
+    }
+
+
+
+
+
 
 
     class ItemViewHolder2(view: View) : RecyclerView.ViewHolder(view) {
@@ -80,7 +95,10 @@ class QiitaChildAdapter(private val context: Context) : RecyclerView.Adapter<Rec
         val childImageView: ImageView = view.findViewById(R.id.child_imageView)
         val childTitleTextView: TextView = view.findViewById(R.id.child_titleTextView)
         val childNameTextView: TextView =  view.findViewById(R.id.child_userNameTextView)
+        val deleteButton: Button = view.findViewById(R.id.deleteButton)
     }
+
+
 }
 
 
