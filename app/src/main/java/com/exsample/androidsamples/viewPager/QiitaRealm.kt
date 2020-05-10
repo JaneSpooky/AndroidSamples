@@ -8,7 +8,6 @@ open class QiitaRealm: RealmObject() {
     @PrimaryKey
     var id: String = ""
     var title: String = ""
-    var body: String = ""
     var url : String = ""
 
     companion object {

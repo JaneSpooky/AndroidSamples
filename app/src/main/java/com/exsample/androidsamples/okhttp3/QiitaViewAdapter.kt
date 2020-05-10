@@ -82,7 +82,6 @@ class QiitaViewAdapter(private val context: Context) : RecyclerView.Adapter<Recy
             var qiitaRealm = QiitaRealm().apply {
                 id = data.id
                 title = data.title
-                body = data.body
                 url = data.url
 
             }

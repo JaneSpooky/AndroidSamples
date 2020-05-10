@@ -27,13 +27,13 @@ import java.io.IOException
 class QiitaChildAdapter(private val context: Context) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {//context;Contextって何？
 
 
-    private val items = mutableListOf<QiitaResponse>()
-    fun clear(list: List<QiitaResponse>) {
+    private val items = mutableListOf<QiitaRealm>()
+    fun clear(list: List<QiitaRealm>) {
         items.apply {
             clear()//リスト内のデータをクリアする
         }
     }
-    fun refresh(list: List<QiitaResponse>) {
+    fun refreshes(list: List<QiitaRealm>) {//これは、initData()みたいに呼び出さなくても勝手に発動するの？　　違うっぽい、、
         items.apply {
 //            clear()//リスト内のデータをクリアする
             addAll(list)
@@ -62,7 +62,7 @@ class QiitaChildAdapter(private val context: Context) : RecyclerView.Adapter<Rec
         val data = items[position]
         holder.childTitleTextView.text = favoriteList.joinToString{"$it.title"}
         holder.childNameTextView.text = favoriteList.joinToString{"$it.title"}
-        Picasso.get().load(data.user.profile_image_url).into(holder.childImageView)
+//        Picasso.get().load(data.user.profile_image_url).into(holder.childImageView)
         holder.childRootView.setOnClickListener {
 //            Toast.makeText(context, "${data.title}", Toast.LENGTH_SHORT).show()
             val intent = Intent(context, WebView::class.java)
@@ -70,7 +70,7 @@ class QiitaChildAdapter(private val context: Context) : RecyclerView.Adapter<Rec
 //            context.startActivity(intent);
             intent.putExtra("url",data.url)
             context.startActivity(intent)
-
+         Timber.d("touchali")
         }
     }
 

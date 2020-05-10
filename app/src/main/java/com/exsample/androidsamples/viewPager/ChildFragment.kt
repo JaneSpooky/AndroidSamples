@@ -46,6 +46,7 @@ private val childCustomAdapter by lazy { QiitaChildAdapter(activity!!) }
         initSwipeRefreshLayout()
         initText()
         hideProgress()
+        initData()
     }
 
     private fun initText(){
@@ -76,7 +77,10 @@ private val childCustomAdapter by lazy { QiitaChildAdapter(activity!!) }
     private fun initData() {
         child_swipeRefreshLayout.isRefreshing = false//くるくるを止めるやつ
         Timber.d("ふなっしー")
+        childCustomAdapter.refreshes(QiitaRealm.findAll())
     }
+
+
 
 
 //    private fun showProgress() {

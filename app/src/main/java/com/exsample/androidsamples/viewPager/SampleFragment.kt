@@ -109,7 +109,7 @@ class SampleFragment : Fragment() {
                 }
             }
             override fun onResponse(call: Call, response: Response) {
-                handler.post {
+                handler.post {//postって何？ handlerとは？
                     hideProgress()
                     swipeRefreshLayout2.isRefreshing = false
                     response.body?.string()?.also {
