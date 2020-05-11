@@ -17,6 +17,7 @@ import com.exsample.androidsamples.recyclerView.RecyclerViewActivity
 import com.exsample.androidsamples.recyclerViewSample.RecyclerViewSampleActivity
 import com.exsample.androidsamples.service.ServiceActivity
 import com.exsample.androidsamples.tagView.TagViewActivity
+import com.exsample.androidsamples.todo.TodoActivity
 import com.exsample.androidsamples.viewPager.ViewPagerActivity
 
 class MainActivity: BaseActivity() {
@@ -73,6 +74,7 @@ class MainActivity: BaseActivity() {
             FirebaseAuthActivity::class.java.simpleName -> FirebaseAuthActivity.start(this)
             FirebaseStorageActivity::class.java.simpleName -> FirebaseStorageActivity.start(this)
             TagViewActivity::class.java.simpleName -> TagViewActivity.start(this)
+            TodoActivity::class.java.simpleName -> TodoActivity.start(this)
         }
     }
 

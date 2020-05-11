@@ -58,6 +58,9 @@
         <activity
             android:name=".tagView.TagViewActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".todo.TodoActivity"
+            android:screenOrientation="portrait" />
 
         <service android:name=".service.MyService" />
         <service
