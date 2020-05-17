@@ -67,7 +67,7 @@ class OkHttp3Activity: BaseActivity() {
     private fun updateData() {
         val client = OkHttpClient()
         val request = Request.Builder()
-            .url("https://qiita.com/api/v2/items?page=1&per_page=20")
+            .url("https://qiita.com/api/v2/itper_page=20")
             .build()
         client.newCall(request).enqueue(object: Callback {
             override fun onFailure(call: Call, e: IOException) {

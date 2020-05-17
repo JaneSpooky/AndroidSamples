@@ -28,7 +28,7 @@ class RecyclerViewAdapter(private val context: Context) : RecyclerView.Adapter<R
         ItemViewHolder(
             LayoutInflater.from(context).inflate(
                 R.layout.recycler_view_cell,
-                parent
+                parent,
                 false
             )
         )
