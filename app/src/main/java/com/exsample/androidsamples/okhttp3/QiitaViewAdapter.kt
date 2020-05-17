@@ -66,7 +66,7 @@ class QiitaViewAdapter(private val context: Context) : RecyclerView.Adapter<Recy
         holder.likeCountTextView.text = "${data.likes_count}"//$何とかで文字列ではなくデータの中身を見せろという意味
         holder.userNameTextView.text = data.user.name
         Picasso.get().load(data.user.profile_image_url).into(holder.imageView)
-        holder.clipmaster.setOnClickListener{
+        holder.clipMaster.setOnClickListener{
             Toast.makeText(context, "お気に入り追加完了", Toast.LENGTH_SHORT).show()
             saveRealm(data)
         }
@@ -114,6 +114,6 @@ class QiitaViewAdapter(private val context: Context) : RecyclerView.Adapter<Recy
         val titleTextView: TextView = view.findViewById(R.id.titleTextView)
         val likeCountTextView: TextView = view.findViewById(R.id.likeCountTextView)
         val userNameTextView:TextView =  view.findViewById(R.id.userNameTextView)
-        val clipmaster: ImageView = view.findViewById(R.id.clipmaster_errer)
+        val clipMaster: ImageView = view.findViewById(R.id.clipmaster_errer)
     }
 }

@@ -95,7 +95,7 @@ class QiitaChildAdapter(private val context: Context) : RecyclerView.Adapter<Rec
         val childImageView: ImageView = view.findViewById(R.id.child_imageView)
         val childTitleTextView: TextView = view.findViewById(R.id.child_titleTextView)
         val childNameTextView: TextView =  view.findViewById(R.id.child_userNameTextView)
-        val deleteButton: Button = view.findViewById(R.id.deleteButton)
+        val deleteButton: Button =  view.findViewById(R.id.deleteButton)
     }
 
 
