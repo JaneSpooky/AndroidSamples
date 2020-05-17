@@ -2,14 +2,18 @@ package com.exsample.androidsamples.okhttp3
 
 import QiitaResponse
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.exsample.androidsamples.R
+import com.squareup.picasso.Picasso
 
 class QiitaViewAdapter(private val context: Context) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
@@ -28,7 +32,7 @@ class QiitaViewAdapter(private val context: Context) : RecyclerView.Adapter<Recy
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder =
         ItemViewHolder(
             LayoutInflater.from(context).inflate(
-                R.layout.recycler_view_cell,
+                R.layout.qiita_view_cell,
                 parent,
                 false
             )
@@ -41,12 +45,21 @@ class QiitaViewAdapter(private val context: Context) : RecyclerView.Adapter<Recy
 
     private fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
         val data = items[position]
-        holder.nameTextView.text = data.title
-        holder.rootView.setBackgroundColor(ContextCompat.getColor(context, if (position % 2 == 0) R.color.light_blue else R.color.light_yellow))
+        holder.titleTextView.text = data.title
+        holder.likeCountTextView.text = "${data.likes_count}"
+        Picasso.get().load(data.user.profile_image_url).into(holder.imageView)
+        holder.rootView.setOnClickListener {
+            Toast.makeText(context, "${data.title}", Toast.LENGTH_SHORT).show()
+//            val intent = Intent(context, WebViewActivity::class.java)
+//            // intentにurlを渡すと...
+//            context.startActivity(intent)
+        }
     }
 
     class ItemViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val rootView: ConstraintLayout = view.findViewById(R.id.rootView)
-        val nameTextView: TextView = view.findViewById(R.id.nameTextView)
+        val imageView: ImageView = view.findViewById(R.id.imageView)
+        val titleTextView: TextView = view.findViewById(R.id.titleTextView)
+        val likeCountTextView: TextView = view.findViewById(R.id.likeCountTextView)
     }
 }
