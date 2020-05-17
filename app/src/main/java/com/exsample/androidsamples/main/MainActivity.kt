@@ -10,6 +10,7 @@ import com.exsample.androidsamples.databinding.MainActivityBinding
 import com.exsample.androidsamples.firebaseAuth.FirebaseAuthActivity
 import com.exsample.androidsamples.firebaseStorage.FirebaseStorageActivity
 import com.exsample.androidsamples.firestore.FirestoreActivity
+import com.exsample.androidsamples.firestore.FirestoreActivity.Companion.start
 import com.exsample.androidsamples.location.LocationActivity
 import com.exsample.androidsamples.okhttp3.OkHttp3Activity
 import com.exsample.androidsamples.realm.RealmActivity
