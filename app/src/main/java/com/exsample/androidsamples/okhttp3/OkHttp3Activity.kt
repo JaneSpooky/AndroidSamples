@@ -6,6 +6,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.view.LayoutInflater
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.afollestad.materialdialogs.MaterialDialog
 import com.exsample.androidsamples.R
@@ -49,7 +50,7 @@ class OkHttp3Activity: BaseActivity() {
         recyclerView.apply {
             adapter = customAdapter
             setHasFixedSize(true)
-            layoutManager = LinearLayoutManager(context)
+            layoutManager = GridLayoutManager(context, 3)
         }
     }
 
@@ -67,7 +68,9 @@ class OkHttp3Activity: BaseActivity() {
     private fun updateData() {
         val client = OkHttpClient()
         val request = Request.Builder()
-            .url("https://qiita.com/api/v2/items?per_page=20&page=1")
+//            .url("https://qiita.com/api/v2/items?per_page=30&page=1")
+//            .url("https://api.gnavi.co.jp/RestSearchAPI/?keyid=10d7139a174395ebb2a656fad8ef098a&hit_per_page=30")
+            .url("https://api.syosetu.com/novelapi/api/?out=json&biggenre=2")
             .build()
         client.newCall(request).enqueue(object: Callback {
             override fun onFailure(call: Call, e: IOException) {
@@ -78,20 +81,43 @@ class OkHttp3Activity: BaseActivity() {
                 }
             }
             override fun onResponse(call: Call, response: Response) {
+                val list = makeCommonResponseList(response)
                 handler.post {
                     hideProgress()
                     swipeRefreshLayout.isRefreshing = false
-                    response.body?.string()?.also {
-                        val gson = Gson()
-                        val type = object : TypeToken<List<QiitaResponse>>() {}.type
-                        val list = gson.fromJson<List<QiitaResponse>>(it, type)
-                        customAdapter.refresh(list)
-                    } ?: run {
-                        customAdapter.refresh(listOf())
-                    }
+                    customAdapter.refresh(list)
                 }
             }
         })
+    }
+
+    private fun makeCommonResponseList(response: Response): List<CommonResponse> {
+        response.body?.string()?.also {
+            val gson = Gson()
+            // Qiita--ここから
+//                        val type = object : TypeToken<List<QiitaResponse>>() {}.type
+//                        val list = gson.fromJson<List<QiitaResponse>>(it, type).map { CommonResponse().apply {
+//                            name = it.title
+//                            imageUrl = it.user.profile_image_url
+//                        } }
+            // Qiita--ここまで
+            // ぐるなび--ここから
+//            val response = gson.fromJson(it, Food::class.java)
+//            val list = response.rest.map { CommonResponse().apply {
+//                name = it.name
+//                imageUrl = it.image_url.shop_image1
+//            } }
+            // ぐるなび--ここまで
+            // なろう--ここから
+            val response = gson.fromJson(it, Narou::class.java)
+            val list = response.filterNot { it.title == null }.map { CommonResponse().apply {
+                name = it.title
+                imageUrl = "からです"
+            } }
+            // なろう--ここまで
+            return list
+        }
+        return listOf()
     }
 
     private fun showProgress() {
