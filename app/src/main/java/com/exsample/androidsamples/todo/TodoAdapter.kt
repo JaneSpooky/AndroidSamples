@@ -15,9 +15,11 @@ import com.exsample.androidsamples.R
 
 class TodoAdapter(private val context: Context?)  : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    private val items = mutableListOf<ChatRoom>()
+    private val items = mutableListOf<Todo>()
 
-    fun refresh(list: List<ChatRoom>) {
+    var callback : TodoAdapterCallback? = null
+
+    fun refresh(list: List<Todo>) {
         items.apply {
             clear()
             addAll(list)
@@ -46,7 +48,7 @@ class TodoAdapter(private val context: Context?)  : RecyclerView.Adapter<Recycle
         holder.nameTextView.text = data.name
         holder.dateTextView.text = DateFormat.format("yyyy/MM/dd hh:mm:ss", data.createdAt)
         holder.rootView.setOnClickListener {
-            EventManager.postClickChatRoomEvent(data.roomId, data.name)
+            callback?.onClick(data)
         }
     }
 
@@ -54,5 +56,9 @@ class TodoAdapter(private val context: Context?)  : RecyclerView.Adapter<Recycle
         val rootView: ConstraintLayout = view.findViewById(R.id.rootView)
         val nameTextView: TextView = view.findViewById(R.id.nameTextView)
         var dateTextView: TextView = view.findViewById(R.id.dateTextView)
+    }
+
+    interface TodoAdapterCallback {
+        fun onClick(data: Todo)
     }
 }

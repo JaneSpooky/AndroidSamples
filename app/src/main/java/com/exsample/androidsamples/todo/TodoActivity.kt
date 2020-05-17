@@ -10,10 +10,9 @@ import com.afollestad.materialdialogs.input.input
 import com.exsample.androidsamples.R
 import com.exsample.androidsamples.base.BaseActivity
 import com.exsample.androidsamples.firestore.ChatRoom
-import com.exsample.androidsamples.firestore.ChatRoomsAdapter
-import com.exsample.androidsamples.firestore.FirestoreActivity
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.chat_rooms_fragment.*
+import java.util.*
 
 class TodoActivity: BaseActivity() {
 
@@ -21,7 +20,7 @@ class TodoActivity: BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.firestore_activity)
+        setContentView(R.layout.chat_rooms_fragment)
         initialize()
     }
 
@@ -46,6 +45,11 @@ class TodoActivity: BaseActivity() {
     }
 
     private fun initRecyclerView() {
+        customAdapter.callback = object: TodoAdapter.TodoAdapterCallback {
+            override fun onClick(data: Todo) {
+                updateTodo(data)
+            }
+        }
         recyclerView.apply {
             adapter = customAdapter
             setHasFixedSize(true)
@@ -73,11 +77,13 @@ class TodoActivity: BaseActivity() {
     }
 
     private fun makeRoom(roomName: String) {
+        val todo = Todo().apply {
+            name = roomName
+        }
         FirebaseFirestore.getInstance()
-            .collection("rooms")
-            .add(ChatRoom().apply {
-                name = roomName
-            })
+            .collection("todo")
+            .document("${todo.id}")
+            .set(todo)
             .addOnCompleteListener {
                 initData()
             }
@@ -85,17 +91,31 @@ class TodoActivity: BaseActivity() {
 
     private fun initData() {
         FirebaseFirestore.getInstance()
-            .collection("rooms")
+            .collection("todo")
             .get()
             .addOnCompleteListener {
                 swipeRefreshLayout.isRefreshing = false
                 if (!it.isSuccessful)
                     return@addOnCompleteListener
-                it.result?.toObjects(ChatRoom::class.java)?.also { chatRooms ->
+                it.result?.toObjects(Todo::class.java)?.also { chatRooms ->
                     customAdapter.refresh(chatRooms)
                 }
             }
     }
+
+
+    private fun updateTodo(data: Todo) {
+        FirebaseFirestore.getInstance()
+            .collection("todo")
+            .document("${data.id}")
+            .set(data.apply {
+                updatedAt = Date()
+            })
+            .addOnCompleteListener {
+                initData()
+            }
+    }
+
     companion object {
         fun start(activity: Activity) = activity.startActivity(Intent(activity, TodoActivity::class.java))
     }
