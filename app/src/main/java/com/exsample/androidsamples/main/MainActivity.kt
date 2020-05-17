@@ -12,11 +12,9 @@ import com.exsample.androidsamples.firebaseStorage.FirebaseStorageActivity
 import com.exsample.androidsamples.firestore.FirestoreActivity
 import com.exsample.androidsamples.location.LocationActivity
 import com.exsample.androidsamples.okhttp3.OkHttp3Activity
-import com.exsample.androidsamples.realm.RealmActivity
 import com.exsample.androidsamples.recyclerView.RecyclerViewActivity
 import com.exsample.androidsamples.recyclerViewSample.RecyclerViewSampleActivity
 import com.exsample.androidsamples.service.ServiceActivity
-import com.exsample.androidsamples.tagView.TagViewActivity
 import com.exsample.androidsamples.viewPager.ViewPagerActivity
 
 class MainActivity: BaseActivity() {
@@ -72,7 +70,6 @@ class MainActivity: BaseActivity() {
             ServiceActivity::class.java.simpleName -> ServiceActivity.start(this)
             FirebaseAuthActivity::class.java.simpleName -> FirebaseAuthActivity.start(this)
             FirebaseStorageActivity::class.java.simpleName -> FirebaseStorageActivity.start(this)
-            TagViewActivity::class.java.simpleName -> TagViewActivity.start(this)
         }
     }
 
