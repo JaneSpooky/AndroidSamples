@@ -8,6 +8,7 @@ import android.text.format.DateFormat
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
@@ -46,16 +47,23 @@ class TodoAdapter(private val context: Context?)  : RecyclerView.Adapter<Recycle
     private fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
         val data = items[position]
         holder.nameTextView.text = data.name
-        holder.dateTextView.text = DateFormat.format("yyyy/MM/dd hh:mm:ss", data.createdAt)
+        holder.todoDateTextView.text = DateFormat.format("yyyy/MM/dd hh:mm:ss", data.createdAt)
         holder.rootView.setOnClickListener {
             callback?.onClick(data)
+        }
+        holder.completeButton.setOnClickListener{
+           if (completeButton.equal(<#ffff>)) {
+
+           }
         }
     }
 
     class ItemViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val rootView: ConstraintLayout = view.findViewById(R.id.rootView)
         val nameTextView: TextView = view.findViewById(R.id.nameTextView)
-        var dateTextView: TextView = view.findViewById(R.id.dateTextView)
+        val todoDateTextView: TextView = view.findViewById(R.id.todoDateTextView)
+        val completeButton: Button = view.findViewById(R.id.completeButton)
+
     }
 
     interface TodoAdapterCallback {

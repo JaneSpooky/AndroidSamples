@@ -15,11 +15,11 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/titleTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="TodoList"
             android:textColor="@android:color/black"
-            android:textSize="15sp"
+            android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -67,19 +67,19 @@
         android:layout_width="0dp"
         android:layout_height="1dp"
         android:background="@android:color/black"
-        app:layout_constraintBottom_toTopOf="@id/makeCommentTextView"
+        app:layout_constraintBottom_toTopOf="@id/makeRoomTextView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/makeCommentTextView"
+        android:id="@+id/makeRoomTextView"
         android:layout_width="0dp"
         android:layout_height="56dp"
         android:background="@drawable/selector_button_transparent_black_80"
         android:gravity="center"
         android:text="Todoを追加"
         android:textColor="@android:color/black"
-        android:textSize="20sp"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

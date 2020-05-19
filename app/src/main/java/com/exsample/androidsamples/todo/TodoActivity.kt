@@ -20,7 +20,7 @@ class TodoActivity: BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.chat_rooms_fragment)
+        setContentView(R.layout.todo_view)
         initialize()
     }
 
