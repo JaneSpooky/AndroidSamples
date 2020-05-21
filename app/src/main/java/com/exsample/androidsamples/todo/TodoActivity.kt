@@ -66,8 +66,8 @@ class TodoActivity: BaseActivity() {
     private fun showMakeRoomDialog() {
         this?.also {
             MaterialDialog(it).show {
-                title(R.string.enter_chat_room_name)
-                input(inputType = InputType.TYPE_CLASS_TEXT) { _, text ->
+                title(R.string.enter_todo_View)
+                input(inputType = InputType.TYPE_CLASS_TEXT) { _, text ->//これが入力したデータ
                     makeRoom("$text")
                 }
                 positiveButton(R.string.ok)

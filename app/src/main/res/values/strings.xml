@@ -62,6 +62,7 @@
     <string name="title_recycler_view_sample">RecyclerViewSample</string>
     <!--TodoList-->
    <string name ="todo_View">やることリスト</string>
+    <string name ="enter_todo_View">やることを追加</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

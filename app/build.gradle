@@ -45,6 +45,7 @@ dependencies {
     // MaterialDialog
     implementation "com.afollestad.material-dialogs:core:$material_dialog_version"
     implementation "com.afollestad.material-dialogs:input:$material_dialog_version"
+    implementation 'com.afollestad.material-dialogs:datetime:3.2.1'
     // ViewModel
     implementation "androidx.lifecycle:lifecycle-extensions:$lifecycler_version"
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycler_version"

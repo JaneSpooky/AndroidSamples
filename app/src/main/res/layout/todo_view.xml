@@ -77,7 +77,7 @@
         android:layout_height="56dp"
         android:background="@drawable/selector_button_transparent_black_80"
         android:gravity="center"
-        android:text="Todoを追加"
+        android:text="@string/enter_todo_View"
         android:textColor="@android:color/black"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
