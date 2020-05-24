@@ -57,7 +57,7 @@ class TodoAdapter(private val context: Context?)  : RecyclerView.Adapter<Recycle
             callback?.onClick(data)
         }
         holder.timeText.text =( DateFormat.format("MM/dd hh:mm", data.createdAt))
-        holder.deadTime.text =( DateFormat.format("MM/dd hh:mm", data.deadLineAt))
+//        holder.deadTime.text =( DateFormat.format("MM/dd hh:mm", data.deadLineAt))
         holder.deadTime.setOnClickListener{
             MaterialDialog(context!!).show {
                 dateTimePicker(requireFutureDateTime = true) { _, dateTime ->
