@@ -46,6 +46,10 @@ class ChatRoomsFragment: BaseFragment() {
         }
     }
 
+    private fun test() {
+        
+    }
+
     private fun initRecyclerView() {
         recyclerView.apply {
             adapter = customAdapter
