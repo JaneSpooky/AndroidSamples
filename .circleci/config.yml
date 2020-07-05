@@ -6,6 +6,8 @@ orbs:
 jobs:
   build:
     executor: android/android
+    branches:
+      - master
 
     steps:
       - checkout
