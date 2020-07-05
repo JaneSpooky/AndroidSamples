@@ -5,23 +5,9 @@ orbs:
 
 jobs:
   build:
-    branches:
-      only:
-        - master
-    docker:
-      # specify the version you desire here
-      - image: circleci/android:api-26-alpha
-
-    environment:
-      # Customize the JVM maximum heap limit
-      JVM_OPTS: -Xmx3200m
-      TERM: dumb
+    executor: android/android
 
     steps:
       - checkout
-
-      # run unit tests!
       - run:
-          name: build
-          command: |
-            ./gradlew assembleDebug
+          command: ./gradlew build
