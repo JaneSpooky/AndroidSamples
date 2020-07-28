@@ -1,6 +1,7 @@
 package com.exsample.androidsamples.main
 
 import androidx.lifecycle.MutableLiveData
+import com.exsample.androidsamples.aacApi.AacActivity
 import com.exsample.androidsamples.base.BaseViewModel
 import com.exsample.androidsamples.firebaseAuth.FirebaseAuthActivity
 import com.exsample.androidsamples.firebaseStorage.FirebaseStorageActivity
@@ -27,7 +28,8 @@ class MainViewModel: BaseViewModel() {
                 Pair("Location", LocationActivity::class.java.simpleName),
                 Pair("Service", ServiceActivity::class.java.simpleName),
                 Pair("FirebaseAuth", FirebaseAuthActivity::class.java.simpleName),
-                Pair("FirebaseStorage", FirebaseStorageActivity::class.java.simpleName)
+                Pair("FirebaseStorage", FirebaseStorageActivity::class.java.simpleName),
+                Pair("AAC", AacActivity::class.java.simpleName)
                 )
         )
     }

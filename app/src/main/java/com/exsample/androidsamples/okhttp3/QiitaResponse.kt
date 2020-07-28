@@ -1,4 +1,7 @@
+package com.exsample.androidsamples.okhttp3
+
 import com.google.gson.annotations.SerializedName
+import java.util.*
 
 /*
 Copyright (c) 2019 Kotlin Data Classes Generated from JSON powered by http://www.json2kotlin.com
@@ -18,7 +21,7 @@ data class QiitaResponse (
 	@SerializedName("body") val body : String,
 	@SerializedName("coediting") val coediting : Boolean,
 	@SerializedName("comments_count") val comments_count : Int,
-	@SerializedName("created_at") val created_at : String,
+	@SerializedName("created_at") val created_at : Date,
 	@SerializedName("group") val group : String,
 	@SerializedName("id") val id : String,
 	@SerializedName("likes_count") val likes_count : Int,

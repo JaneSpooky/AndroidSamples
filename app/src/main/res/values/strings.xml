@@ -60,4 +60,6 @@
     <string name="clear_tag">リセット</string>
     <!-- RecyclerViewSample -->
     <string name="title_recycler_view_sample">RecyclerViewSample</string>
+    <!-- AacActivity -->
+    <string name="title_aac">AAC</string>
 </resources>

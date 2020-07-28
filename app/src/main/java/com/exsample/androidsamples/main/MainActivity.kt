@@ -5,6 +5,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.exsample.androidsamples.R
+import com.exsample.androidsamples.aacApi.AacActivity
 import com.exsample.androidsamples.base.BaseActivity
 import com.exsample.androidsamples.databinding.MainActivityBinding
 import com.exsample.androidsamples.firebaseAuth.FirebaseAuthActivity
@@ -70,6 +71,7 @@ class MainActivity: BaseActivity() {
             ServiceActivity::class.java.simpleName -> ServiceActivity.start(this)
             FirebaseAuthActivity::class.java.simpleName -> FirebaseAuthActivity.start(this)
             FirebaseStorageActivity::class.java.simpleName -> FirebaseStorageActivity.start(this)
+            AacActivity::class.java.simpleName -> AacActivity.start(this)
         }
     }
 
