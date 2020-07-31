@@ -62,4 +62,6 @@
     <string name="title_recycler_view_sample">RecyclerViewSample</string>
     <!-- AacActivity -->
     <string name="title_aac">AAC</string>
+    <!-- ChildFragmentActivity -->
+    <string name="title_child_fragment">ChildFragment</string>
 </resources>
