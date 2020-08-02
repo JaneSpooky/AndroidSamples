@@ -1,9 +1,11 @@
 package com.exsample.androidsamples.childFragment
 
 import android.os.Bundle
+import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -24,6 +26,7 @@ class ParentFragment: BaseFragment() {
             })
             index = arguments?.getInt(KEY_INDEX) ?: 0
         }
+        binding.index = viewModel.index
         return binding.root
     }
 
@@ -42,7 +45,7 @@ class ParentFragment: BaseFragment() {
     }
 
     private fun initColor() {
-        binding.root.setBackgroundColor(COLORS[viewModel.index])
+        binding.root.setBackgroundColor(ContextCompat.getColor(requireContext(), COLORS[viewModel.index]))
     }
 
     private fun initData() {
@@ -58,11 +61,19 @@ class ParentFragment: BaseFragment() {
             FragmentType.DETAIL ->
                 childFragmentManager.beginTransaction()
                     .add(R.id.container, DetailFragment.newInstance(viewModel.index, viewModel.selectedNumber))
+                    .addToBackStack(DetailFragment::class.java.simpleName)
+                    .commit()
         }
     }
 
-    fun showDetail(selectedNumber: Int) {
-        viewModel.showDetail(selectedNumber)
+    fun showDetail(index: Int, selectedNumber: Int) {
+        viewModel.showDetail(index, selectedNumber)
+    }
+
+    fun isFragmentBack(): Boolean {
+        val fragment = childFragmentManager.fragments.firstOrNull { it is DetailFragment } ?: return false
+        childFragmentManager.beginTransaction().remove(fragment).commit()
+        return true
     }
 
     companion object {

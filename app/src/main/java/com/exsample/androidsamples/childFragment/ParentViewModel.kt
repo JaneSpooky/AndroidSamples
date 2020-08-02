@@ -14,7 +14,9 @@ class ParentViewModel: BaseViewModel() {
         fragmentType.postValue(FragmentType.NUMBERS)
     }
 
-    fun showDetail(number: Int) {
+    fun showDetail(index: Int, number: Int) {
+        if (this.index != index)
+            return
         selectedNumber = number
         fragmentType.postValue(FragmentType.DETAIL)
     }

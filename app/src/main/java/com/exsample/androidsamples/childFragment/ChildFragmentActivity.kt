@@ -6,6 +6,9 @@ import android.os.Bundle
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProviders
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.exsample.androidsamples.R
 import com.exsample.androidsamples.base.BaseActivity
@@ -24,6 +27,18 @@ class ChildFragmentActivity: BaseActivity() {
         initialize()
     }
 
+    override fun onBackPressed() {
+        val selectedPage = binding.viewPager2.currentItem
+        val selectedFragment = customAdapter.items[selectedPage].fragment
+        val isFragmentBack = when(selectedFragment) {
+            is ParentFragment -> selectedFragment.isFragmentBack()
+            else -> false
+        }
+        if (isFragmentBack)
+            return
+        super.onBackPressed()
+    }
+
     private fun initialize() {
         initBinding()
         initViewModel()
@@ -36,7 +51,11 @@ class ChildFragmentActivity: BaseActivity() {
     }
 
     private fun initViewModel() {
-        viewModel
+        viewModel = ViewModelProviders.of(this).get(ChildFragmentViewModel::class.java).apply {
+            selectedIndexNumberPair.observe(this@ChildFragmentActivity, Observer {
+                selectNumber(it)
+            })
+        }
     }
 
     private fun initLayout() {
@@ -66,6 +85,13 @@ class ChildFragmentActivity: BaseActivity() {
                 tab.text = customAdapter.items[position].title
             }
         ).attach()
+    }
+
+    private fun selectNumber(pair: Pair<Int, Int>) {
+        customAdapter.items.forEach {
+            if (it.fragment is ParentFragment)
+                it.fragment.showDetail(pair.first, pair.second)
+        }
     }
 
     class CustomAdapter(fragmentActivity: FragmentActivity): FragmentStateAdapter(fragmentActivity) {
