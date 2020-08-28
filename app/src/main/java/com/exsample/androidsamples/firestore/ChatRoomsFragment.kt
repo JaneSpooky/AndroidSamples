@@ -5,6 +5,7 @@ import android.text.InputType
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.input.input
@@ -74,11 +75,19 @@ class ChatRoomsFragment: BaseFragment() {
     }
 
     private fun makeRoom(roomName: String) {
+        val chatRoom = ChatRoom().apply {
+            name = roomName
+        }
         FirebaseFirestore.getInstance()
             .collection("rooms")
-            .add(ChatRoom().apply {
-                name = roomName
-            })
+            .document("${chatRoom.roomId}")
+            .set(chatRoom)
+            .addOnFailureListener {
+                Toast.makeText(requireContext(), "失敗しました", Toast.LENGTH_SHORT).show()
+            }
+            .addOnSuccessListener {
+                Toast.makeText(requireContext(), "成功しました", Toast.LENGTH_SHORT).show()
+            }
             .addOnCompleteListener {
                 initData()
             }
