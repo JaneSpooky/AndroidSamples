@@ -3,6 +3,7 @@ package com.exsample.androidsamples.recyclerViewSample
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.exsample.androidsamples.R
 import com.exsample.androidsamples.base.BaseActivity
@@ -36,6 +37,9 @@ class RecyclerViewSampleActivity: BaseActivity() {
     }
 
     private fun initRecyclerView() {
+        customAdapter.onClick = {
+            Toast.makeText(this, "name:${it.name}", Toast.LENGTH_SHORT).show()
+        }
         recyclerView.apply {
             adapter = customAdapter
             setHasFixedSize(true)

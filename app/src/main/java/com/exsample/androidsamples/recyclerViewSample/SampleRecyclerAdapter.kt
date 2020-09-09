@@ -16,6 +16,8 @@ class SampleRecyclerAdapter(private val context: Context) : RecyclerView.Adapter
 
     private val items = mutableListOf<User>()
 
+    var onClick: ((User) -> Unit)? = null
+
     fun refresh(list: List<User>) {
         items.apply {
             clear()
@@ -45,6 +47,9 @@ class SampleRecyclerAdapter(private val context: Context) : RecyclerView.Adapter
         holder.nameTextView.text = data.name
         holder.descriptionTextView.text = data.description
         Picasso.get().load(data.iconUrl).into(holder.imageView)
+        holder.rootView.setOnClickListener {
+            onClick?.invoke(data)
+        }
     }
 
     class ItemViewHolder(view: View) : RecyclerView.ViewHolder(view) {
