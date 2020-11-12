@@ -1,5 +1,4 @@
 <resources>
-    <string name="app_name">AndroidSamples</string>
     <!-- Common -->
     <string name="ok">OK</string>
     <string name="cancel">キャンセル</string>
