@@ -1,6 +1,5 @@
 package com.exsample.androidsamples.okhttp3
 
-import QiitaResponse
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle

@@ -1,0 +1,19 @@
+version: 2
+
+orbs:
+ android: circleci/android@0.2.0
+
+jobs:
+  build:
+    executor: android/android
+    branches:
+      only:
+        - master
+
+    steps:
+      - checkout
+      - run:
+          name: chmod permissions
+          command: chmod +x ./gradlew
+      - run:
+          command: ./gradlew clean assmbleDebug

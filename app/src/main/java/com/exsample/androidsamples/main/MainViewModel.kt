@@ -1,6 +1,7 @@
 package com.exsample.androidsamples.main
 
 import androidx.lifecycle.MutableLiveData
+import com.exsample.androidsamples.aacApi.AacActivity
 import com.exsample.androidsamples.base.BaseViewModel
 import com.exsample.androidsamples.firebaseAuth.FirebaseAuthActivity
 import com.exsample.androidsamples.firebaseStorage.FirebaseStorageActivity
@@ -10,7 +11,6 @@ import com.exsample.androidsamples.okhttp3.OkHttp3Activity
 import com.exsample.androidsamples.recyclerView.RecyclerViewActivity
 import com.exsample.androidsamples.recyclerViewSample.RecyclerViewSampleActivity
 import com.exsample.androidsamples.service.ServiceActivity
-import com.exsample.androidsamples.tagView.TagViewActivity
 import com.exsample.androidsamples.viewPager.ViewPagerActivity
 
 class MainViewModel: BaseViewModel() {
@@ -29,7 +29,7 @@ class MainViewModel: BaseViewModel() {
                 Pair("Service", ServiceActivity::class.java.simpleName),
                 Pair("FirebaseAuth", FirebaseAuthActivity::class.java.simpleName),
                 Pair("FirebaseStorage", FirebaseStorageActivity::class.java.simpleName),
-                Pair("TagView", TagViewActivity::class.java.simpleName)
+                Pair("AAC", AacActivity::class.java.simpleName)
                 )
         )
     }
