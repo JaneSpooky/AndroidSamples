@@ -59,6 +59,9 @@
         <activity
             android:name=".childFragment.ChildFragmentActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".coordinatorLayout.CoordinatorLayoutActivity"
+            android:screenOrientation="portrait" />
         <service android:name=".service.MyService" />
 
         <service

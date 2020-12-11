@@ -4,6 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import com.exsample.androidsamples.aacApi.AacActivity
 import com.exsample.androidsamples.base.BaseViewModel
 import com.exsample.androidsamples.childFragment.ChildFragmentActivity
+import com.exsample.androidsamples.coordinatorLayout.CoordinatorLayoutActivity
 import com.exsample.androidsamples.firebaseAuth.FirebaseAuthActivity
 import com.exsample.androidsamples.firebaseStorage.FirebaseStorageActivity
 import com.exsample.androidsamples.firestore.FirestoreActivity
@@ -31,7 +32,8 @@ class MainViewModel: BaseViewModel() {
                 Pair("FirebaseAuth", FirebaseAuthActivity::class.java.simpleName),
                 Pair("FirebaseStorage", FirebaseStorageActivity::class.java.simpleName),
                 Pair("AAC", AacActivity::class.java.simpleName),
-                Pair("ChildFragment", ChildFragmentActivity::class.java.simpleName)
+                Pair("ChildFragment", ChildFragmentActivity::class.java.simpleName),
+                Pair("CoordinatorLayout", CoordinatorLayoutActivity::class.java.simpleName)
                 )
         )
     }

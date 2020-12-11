@@ -71,6 +71,8 @@ class ViewPagerActivity : AppCompatActivity() {
         override fun getItemCount(): Int = items.size
 
         override fun createFragment(position: Int): Fragment = items[position].fragment
+
+
         class Item(val fragment: Fragment, val title: String)
     }
 

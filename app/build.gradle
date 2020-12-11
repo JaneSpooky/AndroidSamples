@@ -1,9 +1,6 @@
 apply plugin: 'com.android.application'
-
 apply plugin: 'kotlin-android'
-
 apply plugin: 'kotlin-android-extensions'
-
 apply plugin: 'kotlin-kapt'
 
 android {
@@ -56,6 +53,9 @@ android {
 
     dataBinding {
         enabled = true
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
     }
 }
 
@@ -110,6 +110,8 @@ dependencies {
     implementation 'com.squareup.retrofit2:converter-gson:2.1.0'
     // Jsoup
     implementation 'org.jsoup:jsoup:1.11.2'
+
+    implementation "androidx.activity:activity-ktx:1.1.0"
 }
 
 apply plugin: 'com.google.gms.google-services'

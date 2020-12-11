@@ -8,6 +8,7 @@ import com.exsample.androidsamples.R
 import com.exsample.androidsamples.aacApi.AacActivity
 import com.exsample.androidsamples.base.BaseActivity
 import com.exsample.androidsamples.childFragment.ChildFragmentActivity
+import com.exsample.androidsamples.coordinatorLayout.CoordinatorLayoutActivity
 import com.exsample.androidsamples.databinding.MainActivityBinding
 import com.exsample.androidsamples.firebaseAuth.FirebaseAuthActivity
 import com.exsample.androidsamples.firebaseStorage.FirebaseStorageActivity
@@ -74,6 +75,7 @@ class MainActivity: BaseActivity() {
             FirebaseStorageActivity::class.java.simpleName -> FirebaseStorageActivity.start(this)
             AacActivity::class.java.simpleName -> AacActivity.start(this)
             ChildFragmentActivity::class.java.simpleName -> ChildFragmentActivity.start(this)
+            CoordinatorLayoutActivity::class.java.simpleName -> CoordinatorLayoutActivity.start(this)
         }
     }
 
