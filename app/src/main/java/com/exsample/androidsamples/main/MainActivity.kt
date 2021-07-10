@@ -1,6 +1,7 @@
 package com.exsample.androidsamples.main
 
 import android.os.Bundle
+import android.util.Log
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -28,6 +29,12 @@ class MainActivity: BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         initialize()
+        // ここで何か処理をします。
+        doSomething()
+    }
+
+    private fun doSomething()  {
+        Log.d("たぐです", "なにかやります")
     }
 
     private fun initialize() {

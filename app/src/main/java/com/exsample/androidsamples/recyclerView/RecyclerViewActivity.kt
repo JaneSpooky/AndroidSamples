@@ -56,7 +56,7 @@ class RecyclerViewActivity: BaseActivity() {
 
     private fun makeNamesList(): List<String> {
         val list = mutableListOf<String>()
-        val max = (Math.random() * 50).toInt() + 1
+        val max = 100 // (Math.random() * 50).toInt() + 1
         for (i in 0 .. max) {
             list.add("$i")
         }
