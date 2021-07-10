@@ -1,6 +1,7 @@
 package com.exsample.androidsamples.main
 
 import android.os.Bundle
+import android.util.Log
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -33,7 +34,7 @@ class MainActivity: BaseActivity() {
     }
 
     private fun doSomething()  {
-        println("なにかやります")
+        Log.d("たぐです", "なにかやります")
     }
 
     private fun initialize() {
