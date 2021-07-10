@@ -1,6 +1,7 @@
 package com.exsample.androidsamples.recyclerView
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -24,14 +25,20 @@ class RecyclerViewAdapter(private val context: Context) : RecyclerView.Adapter<R
 
     override fun getItemCount(): Int = items.size
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder =
-        ItemViewHolder(
+    private var index = 1
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+        println("onCreateViewHolder ${index}個目です")
+        index++
+        return ItemViewHolder(
             LayoutInflater.from(context).inflate(
                 R.layout.recycler_view_cell,
                 parent,
                 false
             )
         )
+    }
+
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         if (holder is ItemViewHolder)
@@ -39,6 +46,9 @@ class RecyclerViewAdapter(private val context: Context) : RecyclerView.Adapter<R
     }
 
     private fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
+        Log.d("TAG", "")
+        println("onBindViewHolder  newPosition:${position} oldPosition:${holder.nameTextView.tag}")
+        holder.nameTextView.tag = position
         val data = items[position]
         holder.nameTextView.text = data
         holder.rootView.setBackgroundColor(ContextCompat.getColor(context, if (position % 2 == 0) R.color.light_blue else R.color.light_yellow))

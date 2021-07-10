@@ -28,6 +28,12 @@ class MainActivity: BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         initialize()
+        // ここで何か処理をします。
+        doSomething()
+    }
+
+    private fun doSomething()  {
+        println("なにかやります")
     }
 
     private fun initialize() {
