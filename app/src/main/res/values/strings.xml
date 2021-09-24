@@ -39,12 +39,15 @@
     <string name="firebase_auth_hint_mail">メールアドレスを入力してください</string>
     <string name="firebase_auth_password">パスワード</string>
     <string name="firebase_auth_hint_password">8文字以上16文字以内</string>
+    <string name="firebase_auth_name">ニックネーム</string>
+    <string name="firebase_auth_hint_name">1文字以上10文字以内</string>
     <string name="firebase_auth_execute">実行</string>
     <string name="firebase_auth_change_password">パスワード変更</string>
     <string name="firebase_auth_success">成功</string>
     <string name="firebase_auth_error">失敗</string>
     <string name="firebase_auth_warn_mail">メールアドレスを正しく入力してください</string>
     <string name="firebase_auth_warn_password">パスワードを正しく入力してください</string>
+    <string name="firebase_auth_warn_name">ニックネームを正しく入力してください</string>
     <string name="firebase_auth_warn_login">ログインしてください</string>
     <string name="firebase_auth_input_new_password">8文字以上16文字以上で新しいパスワードを入力してください</string>
     <!-- FirebaseStorage -->

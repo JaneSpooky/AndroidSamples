@@ -14,6 +14,7 @@ import com.afollestad.materialdialogs.input.input
 import com.exsample.androidsamples.R
 import com.exsample.androidsamples.base.BaseActivity
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.firebase_auth_activity.*
 import timber.log.Timber
 import kotlin.random.Random
@@ -81,6 +82,7 @@ class FirebaseAuthActivity: BaseActivity() {
         updateMenuTextView(registerTextView, loginRegisterType == LoginRegisterType.REGISTER)
         updateMenuTextView(forgetPasswordTextView, loginRegisterType == LoginRegisterType.FORGET_MAIL)
         passwordView.visibility = if (loginRegisterType == LoginRegisterType.FORGET_MAIL) View.INVISIBLE else View.VISIBLE
+        nameView.visibility = if (loginRegisterType == LoginRegisterType.REGISTER) View.VISIBLE else View.INVISIBLE
     }
 
     private fun updateMenuTextView(textView: TextView, isSelected: Boolean) {
@@ -116,13 +118,26 @@ class FirebaseAuthActivity: BaseActivity() {
     }
 
     private fun register() {
-        val pair = getPair()
-        pair?.also {
-            FirebaseAuth.getInstance().createUserWithEmailAndPassword(it.first, it.second)
+        val triple = getTriple()
+        triple?.also { triple ->
+            FirebaseAuth.getInstance().createUserWithEmailAndPassword(triple.first, triple.second)
                 .addOnCompleteListener {
                     Timber.d("register task:$it")
                     toast(if (it.isSuccessful) R.string.firebase_auth_success else R.string.firebase_auth_error)
                     updateView()
+                    val currentUser = FirebaseAuth.getInstance().currentUser
+                    if (it.isSuccessful && currentUser != null) {
+                        val user = User().apply {
+                            name = triple.third
+                            uid = currentUser.uid
+                        }
+                        FirebaseFirestore.getInstance().collection("users")
+                            // .add(user)
+                            .document(currentUser.uid).set(user)
+                            .addOnCompleteListener { task ->
+                                toast(if (task.isSuccessful) R.string.firebase_auth_success else R.string.firebase_auth_error)
+                            }
+                    }
                 }
         }
     }
@@ -152,9 +167,21 @@ class FirebaseAuthActivity: BaseActivity() {
         return Pair(mailAddress, password)
     }
 
+    private fun getTriple(): Triple<String, String, String>? {
+        val pair = getPair() ?: return null
+        val name = getName()
+        if (name.isEmpty() || name.length > 11) {
+            toast(R.string.firebase_auth_warn_name)
+            return null
+        }
+        return Triple(pair.first, pair.second, name)
+    }
+
     private fun getMailAddress(): String = mailEditText.text.toString()
 
     private fun getPassword(): String = passwordEditText.text.toString()
+
+    private fun getName(): String = nameEditText.text.toString()
 
     private fun logout() {
         FirebaseAuth.getInstance().signOut()
