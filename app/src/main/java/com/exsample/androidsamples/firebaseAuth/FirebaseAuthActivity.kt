@@ -109,10 +109,12 @@ class FirebaseAuthActivity: BaseActivity() {
         val pair = getPair()
         pair?.also {
             FirebaseAuth.getInstance().signInWithEmailAndPassword(it.first, it.second)
-                .addOnCompleteListener {
-                    Timber.d("login task:$it")
-                    toast(if (it.isSuccessful) R.string.firebase_auth_success else R.string.firebase_auth_error)
-                    updateView()
+                .addOnCompleteListener { task ->
+                    if (task.isSuccessful) { // 成功したら
+
+                    } else { // 失敗
+
+                    }
                 }
         }
     }

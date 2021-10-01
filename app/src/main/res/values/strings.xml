@@ -66,4 +66,9 @@
     <string name="title_aac">AAC</string>
     <!-- ChildFragmentActivity -->
     <string name="title_child_fragment">ChildFragment</string>
+    <!-- Users -->
+    <string name="users_title">Users</string>
+    <string name="users_get_all">全件取得</string>
+    <string name="users_get_where">条件取得</string>
+    <string name="users_get_filter">全件取得 -> filter</string>
 </resources>

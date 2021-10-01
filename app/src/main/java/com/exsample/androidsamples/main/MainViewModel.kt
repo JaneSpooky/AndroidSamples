@@ -13,6 +13,7 @@ import com.exsample.androidsamples.okhttp3.OkHttp3Activity
 import com.exsample.androidsamples.recyclerView.RecyclerViewActivity
 import com.exsample.androidsamples.recyclerViewSample.RecyclerViewSampleActivity
 import com.exsample.androidsamples.service.ServiceActivity
+import com.exsample.androidsamples.users.UsersActivity
 import com.exsample.androidsamples.viewPager.ViewPagerActivity
 
 class MainViewModel: BaseViewModel() {
@@ -33,7 +34,8 @@ class MainViewModel: BaseViewModel() {
                 Pair("FirebaseStorage", FirebaseStorageActivity::class.java.simpleName),
                 Pair("AAC", AacActivity::class.java.simpleName),
                 Pair("ChildFragment", ChildFragmentActivity::class.java.simpleName),
-                Pair("CoordinatorLayout", CoordinatorLayoutActivity::class.java.simpleName)
+                Pair("CoordinatorLayout", CoordinatorLayoutActivity::class.java.simpleName),
+                Pair("Users", UsersActivity::class.java.simpleName)
                 )
         )
     }

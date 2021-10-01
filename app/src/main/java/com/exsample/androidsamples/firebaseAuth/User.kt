@@ -10,5 +10,7 @@ class User {
 
     // 国籍, 得意言語(複数あるかも)
 
+    var nativeLanguage: String = ""
+
     var ngUids: List<String> = listOf()
 }

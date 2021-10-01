@@ -18,6 +18,7 @@ import com.exsample.androidsamples.okhttp3.OkHttp3Activity
 import com.exsample.androidsamples.recyclerView.RecyclerViewActivity
 import com.exsample.androidsamples.recyclerViewSample.RecyclerViewSampleActivity
 import com.exsample.androidsamples.service.ServiceActivity
+import com.exsample.androidsamples.users.UsersActivity
 import com.exsample.androidsamples.viewPager.ViewPagerActivity
 
 class MainActivity: BaseActivity() {
@@ -76,6 +77,7 @@ class MainActivity: BaseActivity() {
             AacActivity::class.java.simpleName -> AacActivity.start(this)
             ChildFragmentActivity::class.java.simpleName -> ChildFragmentActivity.start(this)
             CoordinatorLayoutActivity::class.java.simpleName -> CoordinatorLayoutActivity.start(this)
+            UsersActivity::class.java.simpleName -> UsersActivity.start(this)
         }
     }
 
